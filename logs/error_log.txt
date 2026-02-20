@@ -1,0 +1,49 @@
+2026-01-01 21:52:59 | Fatal Error [64]: Cannot redeclare format_currency() (previously declared in C:\xampp\htdocs\bid_for_used_product\includes\functions.php:7) in C:\xampp\htdocs\bid_for_used_product\includes\validation.php on line 160
+2026-01-01 21:58:08 | Database connection failed | Context: {"host":"localhost","database":"bid_for_used_product","error":"SQLSTATE[HY000] [1049] Unknown database 'bid_for_used_product'"}
+2026-01-02 01:54:14 | Exception: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'bid_for_used_product.notifications' doesn't exist in C:\xampp\htdocs\bid_for_used_product\includes\database.php on line 118
+2026-01-02 01:55:46 | Exception: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'bid_for_used_product.notifications' doesn't exist in C:\xampp\htdocs\bid_for_used_product\includes\database.php on line 118
+2026-01-02 02:01:54 | Exception: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'description' in 'field list' in C:\xampp\htdocs\bid_for_used_product\includes\database.php on line 118
+2026-01-02 02:34:31 | Error [8192]: htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\bid_for_used_product\product_details.php on line 142
+2026-01-02 02:34:31 | Error [8192]: htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\bid_for_used_product\product_details.php on line 146
+2026-01-03 16:59:55 | Error [8192]: htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\bid_for_used_product\product_details.php on line 142
+2026-01-03 16:59:55 | Error [8192]: htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\bid_for_used_product\product_details.php on line 146
+2026-01-03 17:21:04 | Exception: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'bid_for_used_product.notifications' doesn't exist in C:\xampp\htdocs\bid_for_used_product\includes\database.php on line 118
+2026-01-03 17:21:06 | Exception: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'bid_for_used_product.notifications' doesn't exist in C:\xampp\htdocs\bid_for_used_product\includes\database.php on line 118
+2026-01-03 17:21:08 | Exception: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'bid_for_used_product.notifications' doesn't exist in C:\xampp\htdocs\bid_for_used_product\includes\database.php on line 118
+2026-01-03 17:21:10 | Exception: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'bid_for_used_product.notifications' doesn't exist in C:\xampp\htdocs\bid_for_used_product\includes\database.php on line 118
+2026-01-03 17:21:12 | Exception: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'bid_for_used_product.notifications' doesn't exist in C:\xampp\htdocs\bid_for_used_product\includes\database.php on line 118
+2026-01-03 17:21:21 | Exception: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'bid_for_used_product.notifications' doesn't exist in C:\xampp\htdocs\bid_for_used_product\includes\database.php on line 118
+2026-01-03 17:22:20 | Exception: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'bid_for_used_product.notifications' doesn't exist in C:\xampp\htdocs\bid_for_used_product\includes\database.php on line 118
+2026-01-03 17:23:53 | Exception: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'bid_for_used_product.notifications' doesn't exist in C:\xampp\htdocs\bid_for_used_product\includes\database.php on line 118
+2026-01-03 19:22:43 | Error [2]: Undefined array key "target_url" in C:\xampp\htdocs\bid_for_used_product\notifications.php on line 27
+2026-01-03 19:22:43 | Error [2]: Undefined array key "target_url" in C:\xampp\htdocs\bid_for_used_product\notifications.php on line 28
+2026-01-03 19:22:43 | Error [2]: Undefined array key "target_url" in C:\xampp\htdocs\bid_for_used_product\notifications.php on line 27
+2026-01-03 19:22:43 | Error [2]: Undefined array key "target_url" in C:\xampp\htdocs\bid_for_used_product\notifications.php on line 28
+2026-01-03 19:59:56 | Exception: Call to undefined function fetch_one() in C:\xampp\htdocs\bid_for_used_product\maintenance.php on line 8
+2026-01-03 19:59:59 | Exception: Call to undefined function fetch_one() in C:\xampp\htdocs\bid_for_used_product\maintenance.php on line 8
+2026-01-03 20:00:01 | Exception: Call to undefined function fetch_one() in C:\xampp\htdocs\bid_for_used_product\maintenance.php on line 8
+2026-01-03 20:17:16 | Exception: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'description' in 'field list' in C:\xampp\htdocs\bid_for_used_product\includes\database.php on line 118
+2026-01-03 20:21:49 | Error [8192]: htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\bid_for_used_product\company\edit_product.php on line 120
+2026-01-03 20:23:02 | Error [8192]: htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\bid_for_used_product\company\edit_product.php on line 120
+2026-01-03 23:05:05 | Exception: Call to undefined function imagecreatetruecolor() in C:\xampp\htdocs\bid_for_used_product\downloads\download_product_images.php on line 296
+2026-01-03 23:10:35 | Exception: Call to undefined function imagecreatetruecolor() in C:\xampp\htdocs\bid_for_used_product\downloads\download_product_images.php on line 296
+2026-01-03 23:13:22 | Error [2]: file_put_contents(C:\xampp\htdocs\bid_for_used_product\downloads/../downloads/product_images/product_1/image_2.jpg): Failed to open stream: No such file or directory in C:\xampp\htdocs\bid_for_used_product\downloads\download_product_images.php on line 230
+2026-01-03 23:13:23 | Error [2]: file_put_contents(C:\xampp\htdocs\bid_for_used_product\downloads/../downloads/product_images/product_1/image_3.jpg): Failed to open stream: No such file or directory in C:\xampp\htdocs\bid_for_used_product\downloads\download_product_images.php on line 230
+2026-01-03 23:13:28 | Error [2]: file_put_contents(C:\xampp\htdocs\bid_for_used_product\downloads/../downloads/product_images/product_1/image_4.jpg): Failed to open stream: No such file or directory in C:\xampp\htdocs\bid_for_used_product\downloads\download_product_images.php on line 230
+2026-01-03 23:13:29 | Error [2]: file_put_contents(C:\xampp\htdocs\bid_for_used_product\downloads/../downloads/product_images/product_1/image_5.jpg): Failed to open stream: No such file or directory in C:\xampp\htdocs\bid_for_used_product\downloads\download_product_images.php on line 230
+2026-01-04 08:50:18 | Error [2]: mkdir(): File exists in C:\xampp\htdocs\bid_for_used_product\downloads\generate_clean_products.php on line 94
+2026-01-04 08:50:18 | Error [2]: mkdir(): File exists in C:\xampp\htdocs\bid_for_used_product\downloads\generate_clean_products.php on line 108
+2026-01-04 08:50:18 | Exception: Call to undefined function imagecreatetruecolor() in C:\xampp\htdocs\bid_for_used_product\downloads\generate_clean_products.php on line 130
+2026-01-04 09:28:11 | Database connection failed | Context: {"host":"localhost","database":"bid_for_used_product","error":"SQLSTATE[HY000] [1049] Unknown database 'bid_for_used_product'"}
+2026-01-04 09:38:01 | Exception: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'avatar' in 'field list' in C:\xampp\htdocs\bid_for_used_product\includes\database.php on line 118
+2026-01-04 09:38:03 | Exception: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'avatar' in 'field list' in C:\xampp\htdocs\bid_for_used_product\includes\database.php on line 118
+2026-01-04 09:38:05 | Exception: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'avatar' in 'field list' in C:\xampp\htdocs\bid_for_used_product\includes\database.php on line 118
+2026-01-04 09:38:06 | Exception: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'avatar' in 'field list' in C:\xampp\htdocs\bid_for_used_product\includes\database.php on line 118
+2026-01-04 09:38:08 | Exception: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'avatar' in 'field list' in C:\xampp\htdocs\bid_for_used_product\includes\database.php on line 118
+2026-01-04 09:39:18 | Exception: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'avatar' in 'field list' in C:\xampp\htdocs\bid_for_used_product\includes\database.php on line 118
+2026-01-04 09:48:31 | Exception: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'avatar' in 'field list' in C:\xampp\htdocs\bid_for_used_product\includes\database.php on line 118
+2026-01-04 09:50:28 | Exception: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'avatar' in 'field list' in C:\xampp\htdocs\bid_for_used_product\includes\database.php on line 118
+2026-01-04 09:53:30 | Exception: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'bid_for_used_product.product_gallery' doesn't exist in C:\xampp\htdocs\bid_for_used_product\includes\database.php on line 118
+2026-01-04 10:37:41 | Database connection failed | Context: {"host":"localhost","database":"bid_for_used_product","error":"SQLSTATE[HY000] [1049] Unknown database 'bid_for_used_product'"}
+2026-01-04 10:37:45 | Database connection failed | Context: {"host":"localhost","database":"bid_for_used_product","error":"SQLSTATE[HY000] [1049] Unknown database 'bid_for_used_product'"}
+2026-01-04 10:37:58 | Database connection failed | Context: {"host":"localhost","database":"bid_for_used_product","error":"SQLSTATE[HY000] [1049] Unknown database 'bid_for_used_product'"}
