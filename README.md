@@ -126,7 +126,19 @@ flowchart TD
 
 ---
 
-## 6. Security and Deployment
+## 6. Core Database Entities
+
+| Entity | Description | Key Attributes |
+| :--- | :--- | :--- |
+| **Users** | Base entity for all platform participants. | `id`, `username`, `email`, `role`, `status` |
+| **Companies** | Business entities authorized to list inventory. | `id`, `user_id`, `company_name`, `gst_no`, `is_verified` |
+| **Products** | Individual auction items (Vehicles/Machinery). | `id`, `company_id`, `category`, `base_price`, `expiry_date` |
+| **Bids** | Transactional ledger of all user offers. | `id`, `product_id`, `user_id`, `bid_amount`, `timestamp` |
+| **Categories** | Industrial classification for inventory mapping. | `id`, `name`, `slug`, `display_order` |
+
+---
+
+## 7. Security and Deployment
 
 ### 6.1 Security Protocols
 *   **Data Integrity**: Systematic use of PDO Prepared Statements.
