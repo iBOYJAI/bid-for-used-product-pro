@@ -23,56 +23,45 @@ Founder of **iBOY Innovation HUB**
 ### Professional Bio
 Jaiganesh D. (iBOY) is the Founder of iBOY Innovation HUB, a technology startup focused on building AI-powered SaaS platforms, automation tools, and future-ready digital solutions. He specializes in Full-Stack Development, Artificial Intelligence integration, backend systems, and scalable startup architecture.
 
-Through iBOY Innovation HUB, he is developing innovative platforms such as AI-based tools, legal tech solutions, automation systems, and modern web applications designed to solve real-world problems. His mission is to create impactful, scalable, and intelligent products that empower businesses and individuals.
-
 ---
 
 ## 1. Project Overview
 
 **Bid For Used Product** is a production-ready web-based auction marketplace designed to facilitate the secure and transparent buying and selling of used vehicles (Cars, Bikes) and Heavy Machinery. The platform connects verified **Companies (Sellers)** with verified **Clients (Buyers)** in a real-time bidding environment.
 
-### Key Objectives
-*   **Transparency**: Elimination of traditional middlemen through a direct-to-buyer bidding engine.
-*   **Verification**: Mandatory GST and business identity verification for all listing entities.
-*   **Real-time Analytics**: Live monitoring of bidding activities and automated status transitions.
-*   **Market Localization**: Specialized inventory categories optimized for the industrial and agricultural sectors in Tamil Nadu.
+### 1.1 Technology Stack
+| Layer | Technology | Version | Purpose |
+| :--- | :--- | :--- | :--- |
+| **Backend** | PHP | 8.2+ | Server-side logic and API implementation. |
+| **Database** | MySQL | 5.7+ | Relational data persistence and ACID transactions. |
+| **Frontend** | HTML5 / CSS3 | Latest | Responsive layout and UI components. |
+| **Scripting** | JavaScript | ES6+ | Real-time DOM updates and AJAX communication. |
+| **Server** | Apache | 2.4+ | Request routing and static asset delivery. |
 
 ---
 
 ## 2. Core Operational Modules
 
 ### 2.1 Administrator Module
-The administrative interface provides comprehensive oversight of the entire ecosystem.
 *   **User Governance**: Management of user states (active, suspended, or prohibited).
-*   **Verification Engine**: Centralized queue for reviewing and approving GST certifications of new companies.
-*   **Inventory Oversight**: Global visibility of all products and active bidding history.
-*   **System Analytics**: Aggregated reporting on platform activity and transaction volumes.
+*   **Verification Engine**: Queue for reviewing and approving GST certifications.
+*   **System Analytics**: Reporting on platform activity and transaction volumes.
 
 ### 2.2 Seller Module (Company)
-Allows verified businesses to reach a broader market through structured auctions.
-*   **Listing Management**: Unified dashboard to upload product specifications, images, and auction parameters.
-*   **Auction Controls**: Ability to define base prices and auction durations.
-*   **Bid Evaluation**: Interface to review all submitted offers and declare authorized winners.
+*   **Listing Management**: Form-based inventory uploads with multi-image support.
+*   **Auction Controls**: Definition of base prices and temporal auction boundaries.
+*   **Winner Selection**: Interface to finalize transactions with the highest verified bidder.
 
 ### 2.3 Buyer Module (Client)
-Provides a secure environment for participating in real-time auctions.
-*   **Product Discovery**: Advanced filtering by category, model year, and price.
-*   **Transaction Participation**: Real-time bidding interface with automated validation against current market maximums.
-*   **Engagement Tracking**: Personalized dashboard to monitor active bids, watchlist items, and winning history.
+*   **Product Discovery**: Category-based search and filtering.
+*   **Live Bidding**: Interactive interface for submitting validated offers.
+*   **Bid Management**: Historical tracking of participated auctions and winning status.
 
 ---
 
-## 3. Technical Implementation Details
+## 3. Technical Visualizations
 
-### 3.1 Security Protocols
-The application implements several layers of security to ensure data integrity and user protection.
-*   **Database Security**: Implementation of PDO Prepared Statements as a primary defense against SQL Injection.
-*   **Cryptographic Standards**: Use of the Bcrypt hashing algorithm for secure password storage and verification.
-*   **Output Sanitization**: Systematic use of `htmlspecialchars()` to mitigate Cross-Site Scripting (XSS) risks.
-*   **Session Management**: Secure session handling with periodic regeneration to prevent hijacking and fixation attacks.
-
-### 3.2 System Architecture
-The application utilizes a modular LAMP/WAMP stack architecture.
+### 3.1 System Architecture
 ```mermaid
 graph TD
     User["Clients and Companies"] -->|HTTP/HTTPS| WebServer["Apache Web Server"]
@@ -81,54 +70,72 @@ graph TD
     App -->|File I/O| FileSys["FileSystem (Uploads)"]
 ```
 
-### 3.3 Relational Logic (ER Diagram)
+### 3.2 User Verification Flow
 ```mermaid
-erDiagram
-    USERS ||--o| COMPANIES : "registers as"
-    COMPANIES ||--o{ PRODUCTS : "lists"
-    PRODUCTS ||--o{ BIDS : "receives"
-    USERS ||--o{ BIDS : "places"
+flowchart TD
+    Start([Registration]) --> Role{Role Type?}
+    Role -- Client --> Active([Active Status])
+    Role -- Company --> GST[Submit GST and Business Proof]
+    GST --> Review{Admin Review}
+    Review -- Rejected --> Manual([Manual Correction])
+    Manual --> GST
+    Review -- Approved --> Verified([Verified Seller Status])
+```
+
+### 3.3 Bidding Logic Flow
+```mermaid
+flowchart TD
+    Bid([Place Bid]) --> Valid{Auction Open?}
+    Valid -- No --> Refuse([Bid Refused])
+    Valid -- Yes --> Amt{Bid > Current Max?}
+    Amt -- No --> Refuse
+    Amt -- Yes --> Log[Store in DB]
+    Log --> Notify[Notify Seller and Bidders]
 ```
 
 ---
 
-## 4. Hardware and Software Specifications
+## 4. System Governance (RBAC Matrix)
 
-### 4.1 Development Environment Target
-*   **Operating System**: Linux (Ubuntu 22.04 LTS recommended) or Windows (via XAMPP).
-*   **Primary Engine**: PHP 8.2 or higher.
-*   **Relational Database**: MariaDB 10.4 or MySQL 5.7+.
-*   **Web Server**: Apache 2.4 with `mod_rewrite` enabled.
-
-### 4.2 Client Prerequisites
-*   **Standard Browsers**: Latest versions of Chrome, Firefox, or Safari.
-*   **Scripting**: JavaScript must be enabled for real-time bid validation.
-
----
-
-## 5. File System Organization
-
-```text
-bid_for_used_product/
-├── COMPLETE_PROJECT_REPORT.md  # Formal engineering documentation
-├── config.php                  # Central environment configuration
-├── database/                   # Relational schema definitions
-├── includes/                   # Core application classes and shared logic
-├── admin/                      # Administrative governance module
-├── company/                    # Seller management interface
-├── client/                     # Buyer participation module
-├── assets/                     # Front-end design and design system
-└── uploads/                    # Secure storage for product media
-```
+| Feature / Action | Administrator | Verified Company | Client | Guest |
+| :--- | :---: | :---: | :---: | :---: |
+| **View Catalog** | Read | Read | Read | Read |
+| **Register** | N/A | N/A | N/A | Create |
+| **Place Bid** | No | No | Yes | No |
+| **List Product** | No | Yes | No | No |
+| **Approve Seller** | Yes | No | No | No |
+| **Ban User** | Yes | No | No | No |
+| **Manage Content** | Full | Partial | No | No |
 
 ---
 
-## 6. Deployment and Configuration
+## 5. Comprehensive Site Inventory (Sitemap)
 
-1.  **Repository Deployment**: Clone the source code into the web server root.
-2.  **Environment Configuration**: Adjust the `config.php` file to reflect local database credentials.
-3.  **Schema Initialization**: Import the SQL definitions provided in the `database/` directory.
-4.  **Directory Permissions**: Ensure the `uploads/` directory has appropriate write permissions for the web server process.
+| Group | Page Name | Primary Function | Access Level |
+| :--- | :--- | :--- | :--- |
+| **Public** | `index.php` | Homepage and active auction preview. | All |
+| **Public** | `product_details.php` | Technical specifications and high-res images. | All |
+| **Admin** | `admin/verify_companies.php` | GST and business document verification. | Admin |
+| **Admin** | `admin/manage_users.php` | User status and permissions management. | Admin |
+| **Seller** | `company/add_product.php` | Inventory listing entry point. | Company |
+| **Seller** | `company/view_bids.php` | Real-time bid analysis for owned listings. | Company |
+| **Buyer** | `client/my_bids.php` | Historical and active bidding activity. | Client |
+| **Buyer** | `client/watchlist.php` | Saved items and auction reminders. | Client |
+
+---
+
+## 6. Security and Deployment
+
+### 6.1 Security Protocols
+*   **Data Integrity**: Systematic use of PDO Prepared Statements.
+*   **Authentication**: Bcrypt hashing for credential security.
+*   **Protection**: HTML sanitization and session regeneration.
+
+### 6.2 Implementation Steps
+1.  **Deployment**: Clone source to web root.
+2.  **Configuration**: Define database parameters in `config.php`.
+3.  **Database**: Execute SQL initialization from the `database/` folder.
+4.  **Permissions**: Verify write access for the `uploads/` directory.
 
 ---
 
@@ -136,12 +143,10 @@ bid_for_used_product/
 
 <div align="center">
   <h3>Software Licensing</h3>
-  <p>This project is licensed under the <b>MIT License</b>. Specific technical and legal provisions are documented in the <a href="LICENSE">LICENSE</a> file.</p>
+  <p>This project is licensed under the <b>MIT License</b>. Full legal provisions are documented in the <a href="LICENSE">LICENSE</a> file.</p>
   <br />
   <p><b>Developed by iBOY Innovation HUB</b></p>
   <p><i>Innovation is not just what you do — it is who YOU are.</i></p>
 </div>
 
 ---
-
-**Copyright 2026 Bid For Used Product. Developed for the Tamil Nadu Market.**
