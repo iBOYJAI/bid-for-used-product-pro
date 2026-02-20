@@ -32,18 +32,47 @@ Through iBOY Innovation HUB, he is developing innovative platforms such as AI-ba
 **Bid For Used Product** is a production-ready web-based auction marketplace designed to facilitate the secure and transparent buying and selling of used vehicles (Cars, Bikes) and Heavy Machinery. The platform connects verified **Companies (Sellers)** with verified **Clients (Buyers)** in a real-time bidding environment.
 
 ### Key Objectives
-*   **Transparency**: Eliminate middlemen by connecting owners directly with bidders through an open bidding system.
-*   **Security**: Ensure all sellers must undergo GST verification before listing any inventory.
-*   **Real-time Interaction**: Implementation of live bidding status updates and automated notifications for all stakeholders.
-*   **Regional Specialization**: Tailored categories for agricultural and industrial equipment common in the Tamil Nadu market.
+*   **Transparency**: Elimination of traditional middlemen through a direct-to-buyer bidding engine.
+*   **Verification**: Mandatory GST and business identity verification for all listing entities.
+*   **Real-time Analytics**: Live monitoring of bidding activities and automated status transitions.
+*   **Market Localization**: Specialized inventory categories optimized for the industrial and agricultural sectors in Tamil Nadu.
 
 ---
 
-## 2. Technical Diagrams
+## 2. Core Operational Modules
 
-### System Architecture
-The application utilizes a modular LAMP/WAMP stack architecture, emphasizing performance and security through native PHP implementation.
+### 2.1 Administrator Module
+The administrative interface provides comprehensive oversight of the entire ecosystem.
+*   **User Governance**: Management of user states (active, suspended, or prohibited).
+*   **Verification Engine**: Centralized queue for reviewing and approving GST certifications of new companies.
+*   **Inventory Oversight**: Global visibility of all products and active bidding history.
+*   **System Analytics**: Aggregated reporting on platform activity and transaction volumes.
 
+### 2.2 Seller Module (Company)
+Allows verified businesses to reach a broader market through structured auctions.
+*   **Listing Management**: Unified dashboard to upload product specifications, images, and auction parameters.
+*   **Auction Controls**: Ability to define base prices and auction durations.
+*   **Bid Evaluation**: Interface to review all submitted offers and declare authorized winners.
+
+### 2.3 Buyer Module (Client)
+Provides a secure environment for participating in real-time auctions.
+*   **Product Discovery**: Advanced filtering by category, model year, and price.
+*   **Transaction Participation**: Real-time bidding interface with automated validation against current market maximums.
+*   **Engagement Tracking**: Personalized dashboard to monitor active bids, watchlist items, and winning history.
+
+---
+
+## 3. Technical Implementation Details
+
+### 3.1 Security Protocols
+The application implements several layers of security to ensure data integrity and user protection.
+*   **Database Security**: Implementation of PDO Prepared Statements as a primary defense against SQL Injection.
+*   **Cryptographic Standards**: Use of the Bcrypt hashing algorithm for secure password storage and verification.
+*   **Output Sanitization**: Systematic use of `htmlspecialchars()` to mitigate Cross-Site Scripting (XSS) risks.
+*   **Session Management**: Secure session handling with periodic regeneration to prevent hijacking and fixation attacks.
+
+### 3.2 System Architecture
+The application utilizes a modular LAMP/WAMP stack architecture.
 ```mermaid
 graph TD
     User["Clients and Companies"] -->|HTTP/HTTPS| WebServer["Apache Web Server"]
@@ -52,32 +81,7 @@ graph TD
     App -->|File I/O| FileSys["FileSystem (Uploads)"]
 ```
 
-### User Flow (Sequence Diagram)
-The following diagram illustrates the interaction between sellers, the system, and potential buyers during an active auction.
-
-```mermaid
-sequenceDiagram
-    participant C as Company (Seller)
-    participant S as System
-    participant B as Client (Buyer)
-    
-    C->>S: Create Product Listing (Base Price, Expiry Time)
-    S-->>C: Listing Activated
-    
-    loop Bidding Window
-        B->>S: Submit Bid (Greater than Current Maximum)
-        S->>S: Validate Bid Integrity via SQL Locks
-        S-->>B: Bid Acceptance Confirmation
-    end
-    
-    S->>S: Expiry Check (Cron/Trigger)
-    C->>S: Select Auction Winner
-    S-->>B: Success Notification and Handover Details
-```
-
-### Entity Relationship (ER) Diagram
-Detailed relational mapping between core system entities.
-
+### 3.3 Relational Logic (ER Diagram)
 ```mermaid
 erDiagram
     USERS ||--o| COMPANIES : "registers as"
@@ -86,51 +90,53 @@ erDiagram
     USERS ||--o{ BIDS : "places"
 ```
 
-### Data Flow Diagram (DFD) - Level 1
-High-level data movement within the application modules.
+---
 
-```mermaid
-graph LR
-    User((User)) -- Authentication --> Auth[Auth Process]
-    Auth <--> DB[(Database)]
-    User -- Interaction --> Engine[Bidding Engine]
-    Engine <--> DB
-```
+## 4. Hardware and Software Specifications
+
+### 4.1 Development Environment Target
+*   **Operating System**: Linux (Ubuntu 22.04 LTS recommended) or Windows (via XAMPP).
+*   **Primary Engine**: PHP 8.2 or higher.
+*   **Relational Database**: MariaDB 10.4 or MySQL 5.7+.
+*   **Web Server**: Apache 2.4 with `mod_rewrite` enabled.
+
+### 4.2 Client Prerequisites
+*   **Standard Browsers**: Latest versions of Chrome, Firefox, or Safari.
+*   **Scripting**: JavaScript must be enabled for real-time bid validation.
 
 ---
 
-## 3. Project Structure and System Files
-
-The codebase is organized into discrete modules to facilitate maintenance and scalability.
+## 5. File System Organization
 
 ```text
 bid_for_used_product/
-├── COMPLETE_PROJECT_REPORT.md  # Comprehensive academic and technical documentation
-├── config.php                  # Global configuration and environment settings
-├── debug_db.php                # Database diagnostic and troubleshooting utility
-├── index.php                   # Primary entry point and landing page
-├── logout.php                  # Session termination and cleanup
-├── patch_sport_icons.php        # UI asset management script
-├── README.md                   # Technical overview (This document)
-├── setup.bat                   # Environment initialization script
-├── admin/                      # Administrative control module
-├── api/                        # REST-compliant backend API endpoints
-├── assets/                     # Frontend assets (Static CSS, JS, Images)
-├── database/                   # SQL schema and migration scripts
-├── docs/                       # Supplemental technical documentation
-├── technical/                  # Engineering logs and system analysis
-├── user/                       # Shared user interface components
-├── includes/                   # Reusable PHP partials and core classes
-└── staff/                      # Internal management and support tools
+├── COMPLETE_PROJECT_REPORT.md  # Formal engineering documentation
+├── config.php                  # Central environment configuration
+├── database/                   # Relational schema definitions
+├── includes/                   # Core application classes and shared logic
+├── admin/                      # Administrative governance module
+├── company/                    # Seller management interface
+├── client/                     # Buyer participation module
+├── assets/                     # Front-end design and design system
+└── uploads/                    # Secure storage for product media
 ```
 
 ---
 
-## 4. Software Licensing
+## 6. Deployment and Configuration
+
+1.  **Repository Deployment**: Clone the source code into the web server root.
+2.  **Environment Configuration**: Adjust the `config.php` file to reflect local database credentials.
+3.  **Schema Initialization**: Import the SQL definitions provided in the `database/` directory.
+4.  **Directory Permissions**: Ensure the `uploads/` directory has appropriate write permissions for the web server process.
+
+---
+
+## 7. Software Licensing
 
 <div align="center">
   <h3>Software Licensing</h3>
-  <p>This project is licensed under the <b>MIT License</b>. Full technical and legal provisions are documented in the <a href="LICENSE">LICENSE</a> file.</p>
+  <p>This project is licensed under the <b>MIT License</b>. Specific technical and legal provisions are documented in the <a href="LICENSE">LICENSE</a> file.</p>
   <br />
   <p><b>Developed by iBOY Innovation HUB</b></p>
   <p><i>Innovation is not just what you do — it is who YOU are.</i></p>
