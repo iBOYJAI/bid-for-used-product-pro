@@ -159,7 +159,7 @@ $is_active = is_bid_active($product['bid_start'], $product['bid_end']);
                                 </div>
                                 <div class="product-info-item">
                                     <span class="product-info-label">Bid Date:</span>
-                                    <span class="product-info-value"><?php echo format_date($my_bid['bid_date']); ?></span>
+                                    <span class="product-info-value"><?php echo format_date($my_bid['bid_time']); ?></span>
                                 </div>
                             </div>
                         </div>

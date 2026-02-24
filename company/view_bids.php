@@ -92,7 +92,7 @@ $bids = fetch_all("SELECT b.*, u.name as client_name, u.email as client_email, u
                                 <?php echo htmlspecialchars($bid['client_contact']); ?>
                             </div>
                         </td>
-                        <td><?php echo format_date($bid['bid_date']); ?></td>
+                        <td><?php echo format_date($bid['bid_time']); ?></td>
                         <td>
                             <span class="badge badge-<?php
                                                         echo $bid['bid_status'] === 'approved' ? 'success' : ($bid['bid_status'] === 'rejected' ? 'danger' : 'warning');

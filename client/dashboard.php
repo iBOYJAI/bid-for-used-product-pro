@@ -46,7 +46,7 @@ $total_bids = fetch_one("SELECT COUNT(*) as count FROM bids WHERE client_id = ?"
                 FROM bids b 
                 JOIN products p ON b.product_id = p.product_id 
                 WHERE b.client_id = ? 
-                ORDER BY b.bid_date DESC 
+                ORDER BY b.bid_time DESC 
                 LIMIT 5
             ", [$user_id]);
 
@@ -71,7 +71,7 @@ $total_bids = fetch_one("SELECT COUNT(*) as count FROM bids WHERE client_id = ?"
                             </div>
                             <div class="flex-between" style="font-size: 0.875rem; color: var(--text-muted);">
                                 <span>My Bid: <strong><?php echo format_currency($bid['bid_amount']); ?></strong></span>
-                                <span><?php echo format_date($bid['bid_date']); ?></span>
+                                <span><?php echo format_date($bid['bid_time']); ?></span>
                             </div>
                         </div>
                     <?php endforeach; ?>

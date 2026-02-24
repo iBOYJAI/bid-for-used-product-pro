@@ -59,35 +59,43 @@ if (!empty($errors)) {
     exit;
 }
 
-// Handle file upload (Multiple)
+// Handle file upload (Multiple) - only process actually selected and uploaded files
 $product_images = [];
 $main_image = null;
 
-if (isset($_FILES['product_image']) && !empty($_FILES['product_image']['name'][0])) {
+// Normalize: PHP may send single file as non-array
+$file_names = $_FILES['product_image']['name'] ?? [];
+if (!is_array($file_names)) {
+    $file_names = $file_names ? [$file_names] : [];
+}
+$file_count = count($file_names);
+
+if (isset($_FILES['product_image']) && $file_count > 0) {
     $files = $_FILES['product_image'];
-    $file_count = count($files['name']);
 
     for ($i = 0; $i < $file_count; $i++) {
-        if ($files['error'][$i] === UPLOAD_ERR_OK) {
-            $tmp_name = $files['tmp_name'][$i];
-            $name = basename($files['name'][$i]);
+        // Only process when user actually selected a file: has name, OK error, and file was uploaded
+        $name = isset($files['name'][$i]) ? trim($files['name'][$i]) : '';
+        $tmp = $files['tmp_name'][$i] ?? '';
+        $err = isset($files['error'][$i]) ? $files['error'][$i] : UPLOAD_ERR_NO_FILE;
+        if ($name === '' || $err !== UPLOAD_ERR_OK || $tmp === '' || !is_uploaded_file($tmp)) {
+            continue;
+        }
 
-            // Create a pseudo-file array for the upload_file function
-            $file_array = [
-                'name' => $name,
-                'type' => $files['type'][$i],
-                'tmp_name' => $tmp_name,
-                'error' => $files['error'][$i],
-                'size' => $files['size'][$i]
-            ];
+        $file_array = [
+            'name' => basename($name),
+            'type' => $files['type'][$i] ?? '',
+            'tmp_name' => $tmp,
+            'error' => $err,
+            'size' => $files['size'][$i] ?? 0
+        ];
 
-            list($upload_success, $filename_or_error) = upload_file($file_array, PRODUCT_IMAGE_DIR, ALLOWED_IMAGE_TYPES);
+        list($upload_success, $filename_or_error) = upload_file($file_array, PRODUCT_IMAGE_DIR, ALLOWED_IMAGE_TYPES);
 
-            if ($upload_success) {
-                $product_images[] = $filename_or_error;
-                if (!$main_image) {
-                    $main_image = $filename_or_error; // First one is main
-                }
+        if ($upload_success) {
+            $product_images[] = $filename_or_error;
+            if (!$main_image) {
+                $main_image = $filename_or_error; // First one is main
             }
         }
     }

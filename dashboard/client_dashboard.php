@@ -77,9 +77,7 @@ $recent_products = fetch_all("SELECT p.*, c.company_name
                                      alt="<?php echo htmlspecialchars($product['product_name']); ?>" 
                                      class="product-image">
                             <?php else: ?>
-                                <div class="product-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 48px;">
-                                    <?php echo strtoupper(substr($product['category'], 0, 1)); ?>
-                                </div>
+                                <div class="product-image" style="background: #f1f5f9; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 0.9rem;">No image</div>
                             <?php endif; ?>
                             <div class="product-body">
                                 <h3 class="product-title"><?php echo htmlspecialchars($product['product_name']); ?></h3>

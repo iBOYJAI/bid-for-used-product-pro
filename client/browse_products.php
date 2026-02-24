@@ -93,7 +93,7 @@ $products = fetch_all($sql, $params);
                         <?php if ($image_url): ?>
                             <img src="<?php echo $image_url; ?>" style="width: 100%; height: 100%; object-fit: cover;">
                         <?php else: ?>
-                            <img src="<?php echo APP_URL; ?>/assets/images/Notion-Resources/Office-Club/Regular/png/oc-puzzle.png" style="width: 100%; height: 100%; object-fit: contain; padding: 2rem;">
+                            <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 0.85rem;">No image</div>
                         <?php endif; ?>
 
                         <!-- Status Badge -->

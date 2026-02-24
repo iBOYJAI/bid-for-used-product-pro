@@ -10,7 +10,7 @@ function get_monthly_bids()
     // Mock data for demo if DB query is complex to write inline without testing
     // But let's try a real query
     return fetch_all("
-        SELECT DATE_FORMAT(bid_date, '%Y-%m') as month, COUNT(*) as count, SUM(bid_amount) as amount 
+        SELECT DATE_FORMAT(bid_time, '%Y-%m') as month, COUNT(*) as count, SUM(bid_amount) as amount 
         FROM bids 
         GROUP BY month 
         ORDER BY month DESC 
@@ -84,12 +84,12 @@ $monthly_stats = get_monthly_bids();
                         FROM bids b 
                         JOIN products p ON b.product_id = p.product_id 
                         JOIN users u ON b.client_id = u.user_id 
-                        ORDER BY b.bid_date DESC 
+                        ORDER BY b.bid_time DESC 
                         LIMIT 10
                     ");
                     foreach ($bids as $bid): ?>
                         <tr>
-                            <td style="padding: 1rem; border-bottom: 1px solid #e2e8f0;"><?php echo format_date($bid['bid_date']); ?></td>
+                            <td style="padding: 1rem; border-bottom: 1px solid #e2e8f0;"><?php echo format_date($bid['bid_time']); ?></td>
                             <td style="padding: 1rem; border-bottom: 1px solid #e2e8f0;"><?php echo htmlspecialchars($bid['product_name']); ?></td>
                             <td style="padding: 1rem; border-bottom: 1px solid #e2e8f0;"><?php echo htmlspecialchars($bid['client_name']); ?></td>
                             <td style="padding: 1rem; border-bottom: 1px solid #e2e8f0; font-weight: 600;"><?php echo format_currency($bid['bid_amount']); ?></td>

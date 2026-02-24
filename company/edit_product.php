@@ -34,7 +34,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $image_query_part = "";
     $params = [$product_name, $model, $year, $base_price, $running_duration, $description, $status, $bid_end];
 
-    if (isset($_FILES['product_image']) && $_FILES['product_image']['error'] === UPLOAD_ERR_OK) {
+    // Only update main image when user actually selected and uploaded a file
+    if (isset($_FILES['product_image']['tmp_name']) && $_FILES['product_image']['error'] === UPLOAD_ERR_OK
+        && !empty($_FILES['product_image']['tmp_name']) && is_uploaded_file($_FILES['product_image']['tmp_name'])) {
         $upload = upload_file($_FILES['product_image'], UPLOAD_DIR . 'products/');
         if ($upload[0]) {
             $image_query_part = ", product_image = ?";
@@ -60,6 +62,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($stmt) {
             $success = "Product updated successfully!";
+
+            // Handle additional gallery images only when user actually selected file(s)
+            $gallery_names = $_FILES['gallery_images']['name'] ?? null;
+            if (isset($_FILES['gallery_images']) && $gallery_names !== null) {
+                if (!is_array($gallery_names)) {
+                    $gallery_names = $gallery_names ? [$gallery_names] : [];
+                }
+                $files = $_FILES['gallery_images'];
+                $upload_dir = UPLOAD_DIR . 'products/';
+                $added = 0;
+                for ($i = 0; $i < count($gallery_names); $i++) {
+                    $name = isset($files['name'][$i]) ? trim($files['name'][$i]) : '';
+                    $tmp = $files['tmp_name'][$i] ?? '';
+                    $err = isset($files['error'][$i]) ? $files['error'][$i] : UPLOAD_ERR_NO_FILE;
+                    // Skip: no file selected, upload error, or not actually uploaded
+                    if ($name === '' || $err !== UPLOAD_ERR_OK || $tmp === '' || !is_uploaded_file($tmp)) {
+                        continue;
+                    }
+                    $file_array = [
+                        'name' => basename($name),
+                        'type' => $files['type'][$i] ?? '',
+                        'tmp_name' => $tmp,
+                        'error' => $err,
+                        'size' => $files['size'][$i] ?? 0
+                    ];
+                    list($upload_ok, $filename_or_error) = upload_file($file_array, $upload_dir, ALLOWED_IMAGE_TYPES);
+                    if ($upload_ok) {
+                        execute_query("INSERT INTO product_gallery (product_id, image_path) VALUES (?, ?)", [$product_id, $filename_or_error]);
+                        $added++;
+                    }
+                }
+                if ($added > 0) {
+                    $success .= " $added extra image(s) added to gallery.";
+                }
+            }
+
             // Refresh data
             $product = fetch_one("SELECT * FROM products WHERE product_id = ?", [$product_id]);
         } else {
@@ -67,6 +105,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 }
+
+// Load existing gallery for display
+$existing_gallery = fetch_all("SELECT image_path FROM product_gallery WHERE product_id = ? ORDER BY gallery_id ASC", [$product_id]);
 
 // Prepare date for input type=datetime-local
 $bid_end_val = date('Y-m-d\TH:i', strtotime($product['bid_end']));
@@ -141,24 +182,38 @@ $bid_end_val = date('Y-m-d\TH:i', strtotime($product['bid_end']));
         <!-- Image Preview Section -->
         <div>
             <div class="card" style="padding: 1.5rem; text-align: center;">
-                <h3 style="margin-bottom: 1rem; font-size: 1.1rem;">Product Image</h3>
+                <h3 style="margin-bottom: 1rem; font-size: 1.1rem;">Main Product Image</h3>
                 <div style="margin-bottom: 1.5rem; border-radius: 8px; overflow: hidden; height: 250px; background: #f3f4f6; display: flex; align-items: center; justify-content: center;">
-                    <?php
-                    $img_src = $product['product_image']
-                        ? APP_URL . '/uploads/products/' . $product['product_image']
-                        : APP_URL . '/assets/images/Notion-Resources/Office-Club/Regular/png/oc-puzzle.png';
-                    ?>
-                    <img src="<?php echo $img_src; ?>"
-                        alt="Product"
-                        style="width: 100%; height: 100%; object-fit: cover; <?php echo $product['product_image'] ? '' : 'padding: 2rem; object-fit: contain;'; ?>"
-                        id="imagePreview">
+                    <?php if ($product['product_image']): ?>
+                        <img src="<?php echo APP_URL . '/uploads/products/' . $product['product_image']; ?>"
+                            alt="Product" style="width: 100%; height: 100%; object-fit: cover;" id="imagePreview">
+                    <?php else: ?>
+                        <span style="color: var(--text-muted); font-size: 0.9rem;">No image uploaded</span>
+                        <img src="" alt="" id="imagePreview" style="display: none;">
+                    <?php endif; ?>
                 </div>
 
                 <label class="btn btn-secondary w-full" style="cursor: pointer; display: block;">
-                    Change Image
-                    <input type="file" name="product_image" form="editForm" style="display: none;" onchange="previewImage(this)">
+                    Change Main Image
+                    <input type="file" name="product_image" form="editForm" style="display: none;" onchange="previewImage(this)" accept="image/*">
                 </label>
-                <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem;">Click 'Update Details' to save changes.</p>
+
+                <h3 style="margin: 1.5rem 0 0.75rem; font-size: 1rem;">Gallery (extra images)</h3>
+                <?php if (!empty($existing_gallery)): ?>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(60px, 1fr)); gap: 0.5rem; margin-bottom: 1rem;">
+                        <?php foreach ($existing_gallery as $g): ?>
+                            <img src="<?php echo APP_URL; ?>/uploads/products/<?php echo htmlspecialchars($g['image_path']); ?>" alt="" style="width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 6px; border: 1px solid #e2e8f0;">
+                        <?php endforeach; ?>
+                    </div>
+                <?php else: ?>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.75rem;">No extra images yet. Add some below.</p>
+                <?php endif; ?>
+
+                <label class="btn btn-primary w-full" style="cursor: pointer; display: block;">
+                    Add More Images
+                    <input type="file" name="gallery_images[]" form="editForm" style="display: none;" accept="image/*" multiple>
+                </label>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem;">Optional. Select multiple images, then click Update Details.</p>
             </div>
         </div>
     </div>
@@ -167,10 +222,18 @@ $bid_end_val = date('Y-m-d\TH:i', strtotime($product['bid_end']));
 <script>
     function previewImage(input) {
         if (input.files && input.files[0]) {
+            var preview = document.getElementById('imagePreview');
+            var container = preview.closest('div');
+            var noImg = container.querySelector('span');
+            if (noImg) noImg.style.display = 'none';
+            preview.style.display = 'block';
+            preview.style.width = '100%';
+            preview.style.height = '100%';
+            preview.style.objectFit = 'cover';
             var reader = new FileReader();
             reader.onload = function(e) {
-                document.getElementById('imagePreview').src = e.target.result;
-            }
+                preview.src = e.target.result;
+            };
             reader.readAsDataURL(input.files[0]);
         }
     }

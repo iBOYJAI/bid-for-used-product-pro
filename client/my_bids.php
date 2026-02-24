@@ -9,7 +9,7 @@ $sql = "SELECT b.*, p.product_name, p.product_image, p.status as product_status,
         FROM bids b 
         JOIN products p ON b.product_id = p.product_id 
         WHERE b.client_id = ? 
-        ORDER BY b.bid_date DESC";
+        ORDER BY b.bid_time DESC";
 $bids = fetch_all($sql, [$user_id]);
 ?>
 
@@ -60,7 +60,7 @@ $bids = fetch_all($sql, [$user_id]);
                         <td style="font-weight: 600; color: var(--primary);">
                             <?php echo format_currency($bid['bid_amount']); ?>
                         </td>
-                        <td><?php echo format_date($bid['bid_date']); ?></td>
+                        <td><?php echo format_date($bid['bid_time']); ?></td>
                         <td>
                             <span class="badge badge-<?php
                                                         echo $bid['bid_status'] === 'approved' ? 'success' : ($bid['bid_status'] === 'rejected' ? 'danger' : 'warning');

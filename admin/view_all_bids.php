@@ -8,7 +8,7 @@ $sql = "SELECT b.*, p.product_name, u.name as client_name, c.company_name
         JOIN products p ON b.product_id = p.product_id 
         JOIN users u ON b.client_id = u.user_id 
         JOIN companies c ON p.company_id = c.company_id 
-        ORDER BY b.bid_date DESC";
+        ORDER BY b.bid_time DESC";
 $bids = fetch_all($sql);
 ?>
 
@@ -49,7 +49,7 @@ $bids = fetch_all($sql);
                                 <?php echo ucfirst($bid['bid_status']); ?>
                             </span>
                         </td>
-                        <td style="font-size: 0.875rem;"><?php echo format_date($bid['bid_date']); ?></td>
+                        <td style="font-size: 0.875rem;"><?php echo format_date($bid['bid_time']); ?></td>
                         <td style="font-size: 0.875rem; color: var(--text-muted);"><?php echo htmlspecialchars($bid['company_name']); ?></td>
                     </tr>
                 <?php endforeach; ?>
