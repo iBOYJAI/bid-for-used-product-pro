@@ -1,26 +1,121 @@
+# Chapter 3 — File and Module Specifications
+
+*This document is Section 3.3 of Chapter 3 (System Design and Architecture) and should be read together with the Master Project Report (COMPLETE_PROJECT_REPORT.md), which covers Chapter 3.1 (System Architecture), 3.2 (Data Flow Diagrams), 3.3 (Entity Relationship Diagram), and 3.4 (Physical Database Dictionary).*
+
+---
+
 # 3.3 FILE SPECIFICATIONS
 
 This section defines the physical artifact specification for the current implementation of the `bid_for_used_product` system, including runtime responsibilities, internal executable files, and security controls.
 
 ## 3.3.1 Application File & Directory Layout
 
-| Artifact | Type | Technical Responsibility | Detailed Notes | Key Internal Files | Security/Access Notes |
-|---|---|---|---|---|---|
-| `.gitignore` | Root config file | VCS exclusion policy | Not present in current root snapshot; repository currently tracks project artifacts directly. Recommended for local logs, uploads, and environment-specific files. | *(missing in root)* | Add ignore rules for `logs/`, dynamic `uploads/`, and local secrets to reduce accidental disclosure. |
-| `.htaccess` | Root web server config | URL rewriting / root-level hardening | Not present in project root. Access-control `.htaccess` exists in `uploads/` and `downloads/`. | `uploads/.htaccess`, `downloads/.htaccess` | `uploads/.htaccess` blocks PHP execution and disables indexing; `downloads/.htaccess` enables indexed access and should be reviewed for production hardening. |
-| `index.php` | Entry script (public page) | Public landing + featured auction rendering | Loads header stack, queries latest open products, renders CTA and category visuals. | `index.php`, `includes/header.php`, `includes/footer.php` | Publicly accessible; output sanitized through `htmlspecialchars()` for dynamic display fields. |
-| `LICENSE` | Legal text file | License compliance and distribution rights | MIT license for source usage, redistribution, and warranty disclaimer. | `LICENSE` | Must remain unchanged in redistributed builds. |
-| `README.md` | Project documentation | System overview and technical orientation | Provides architecture summary, stack details, module overview, and links to comprehensive report. | `README.md`, `COMPLETE_PROJECT_REPORT.md` | No direct security risk; keep credentials and secrets out of docs. |
-| `api/` | Root API directory | Conventional API namespace | Not implemented at root level in current build; API endpoints are placed under role domain (`admin/api/`). | *(no files under `api/`)* | Prefer role-scoped authentication if root APIs are introduced later. |
-| `assets/` | Static resource directory | UI style, vendor resources, static images/icons | Houses CSS and large visual asset libraries used by all role UIs. Includes modern UI theme and legacy style file. | `assets/css/modern.css`, `assets/css/style.css`, image libraries under `assets/images/` | Static read-only delivery; no executable PHP in asset tree. Validate content-type and cache policy at server level. |
-| `components/` | Shared UI component directory | Reusable partial component store | Directory not present in current implementation. Component composition is currently handled through `includes/header.php` and `includes/footer.php`. | *(no files under `components/`)* | If introduced, enforce include-only usage and avoid direct route access. |
-| `config/` | Core configuration directory | Global constants and bootstrap settings | Defines DB credentials, upload paths, size/type limits, timezone, and bootstraps error handling. | `config/config.php` | Contains environment-sensitive values; should be protected from direct web download and moved to env-secure config in production. |
-| `cron/` | Scheduler task directory | Background jobs / automation tasks | Not present in current build. Time-bound behavior (auction status checks) is currently evaluated at request-time in page/controller logic. | *(no files under `cron/`)* | If introduced, execute via CLI with least-privilege DB credentials and output logging. |
-| `database/` | SQL schema and seed directory | Physical data model and initial dataset provisioning | Contains canonical schema (`database.sql`) and large seeded data package (`comprehensive_seed.sql`). Used by setup scripts. | `database/database.sql`, `database/comprehensive_seed.sql` | Restrict direct HTTP access to SQL files in production to prevent schema leakage. |
-| `documentation/` | Structured project documentation directory | Formal docs namespace | Not present as `documentation/`; implemented as `docs/` with setup, DFD, troubleshooting, credentials, and screen documentation. | `docs/SETUP.md`, `docs/DFD_ANALYSIS.md`, `docs/TROUBLESHOOTING.md`, `docs/TEST_CREDENTIALS.md`, `docs/SCREENS_DESCRIPTION.md` | Documentation includes operational details; avoid exposing internal credentials in deploy docs. |
-| `includes/` | Shared backend library directory | Middleware, helpers, DB abstraction, session/RBAC, notifications | Core runtime layer for all routes: DB PDO helper, session policy, input validation, file upload helper, notification API, and utility formatters. | `includes/session.php` (RBAC middleware), `includes/database.php`, `includes/validation.php`, `includes/file_upload_helper.php`, `includes/notifications.php`, `includes/functions.php` | High sensitivity: must not be directly route-executed. Protect include path and avoid exposing stack traces in production mode. |
-| `pages/` | Public/neutral page routes | Authentication, registration, static policies, contact forms | Hosts UI forms that post to `auth/` handlers and stores contact messages. | `pages/login.php` -> `auth/login_process.php`; `pages/register_client.php` -> `auth/register_client_process.php`; `pages/register_company.php` -> `auth/register_company_process.php`; `pages/contact.php` | Public endpoints; requires strong validation and anti-automation controls (rate limit/CAPTCHA recommended). |
-| `uploads/` | Runtime storage directory | User-uploaded product and verification files | Stores auction images and identity proofs generated from forms and setup scripts. | `uploads/products/*`, `uploads/.htaccess` | Current `.htaccess` blocks PHP execution and directory listing. Keep writable but non-executable. |
+Each root-level artifact and directory is specified below in normal format. Implementation-specific file examples supporting runtime flow appear at the end of this subsection.
+
+**1. `.gitignore`**  
+- **Type:** Root config file.  
+- **Technical responsibility:** VCS exclusion policy.  
+- **Detailed notes:** Not present in the current root snapshot; the repository tracks project artifacts directly. Recommended for local logs, uploads, and environment-specific files.  
+- **Key internal files:** None in root (missing).  
+- **Security/access notes:** Add ignore rules for `logs/`, dynamic `uploads/`, and local secrets to reduce accidental disclosure.
+
+**2. `.htaccess`**  
+- **Type:** Root web server config.  
+- **Technical responsibility:** URL rewriting and root-level hardening.  
+- **Detailed notes:** Not present in project root. Access-control `.htaccess` exists in `uploads/` and `downloads/`.  
+- **Key internal files:** `uploads/.htaccess`, `downloads/.htaccess`.  
+- **Security/access notes:** `uploads/.htaccess` blocks PHP execution and disables indexing; `downloads/.htaccess` enables indexed access and should be reviewed for production hardening.
+
+**3. `index.php`**  
+- **Type:** Entry script (public page).  
+- **Technical responsibility:** Public landing and featured auction rendering.  
+- **Detailed notes:** Loads header stack, queries latest open products, renders CTA and category visuals.  
+- **Key internal files:** `index.php`, `includes/header.php`, `includes/footer.php`.  
+- **Security/access notes:** Publicly accessible; output sanitized through `htmlspecialchars()` for dynamic display fields.
+
+**4. `LICENSE`**  
+- **Type:** Legal text file.  
+- **Technical responsibility:** License compliance and distribution rights.  
+- **Detailed notes:** MIT license for source usage, redistribution, and warranty disclaimer.  
+- **Key internal files:** `LICENSE`.  
+- **Security/access notes:** Must remain unchanged in redistributed builds.
+
+**5. `README.md`**  
+- **Type:** Project documentation.  
+- **Technical responsibility:** System overview and technical orientation.  
+- **Detailed notes:** Provides architecture summary, stack details, module overview, and links to the comprehensive report.  
+- **Key internal files:** `README.md`, `COMPLETE_PROJECT_REPORT.md`.  
+- **Security/access notes:** No direct security risk; keep credentials and secrets out of docs.
+
+**6. `api/`**  
+- **Type:** Root API directory.  
+- **Technical responsibility:** Conventional API namespace.  
+- **Detailed notes:** Not implemented at root level in the current build; API endpoints are placed under the role domain (`admin/api/`).  
+- **Key internal files:** None under `api/`.  
+- **Security/access notes:** Prefer role-scoped authentication if root APIs are introduced later.
+
+**7. `assets/`**  
+- **Type:** Static resource directory.  
+- **Technical responsibility:** UI style, vendor resources, static images and icons.  
+- **Detailed notes:** Houses CSS and large visual asset libraries used by all role UIs. Includes modern UI theme and legacy style file.  
+- **Key internal files:** `assets/css/modern.css`, `assets/css/style.css`, image libraries under `assets/images/`.  
+- **Security/access notes:** Static read-only delivery; no executable PHP in asset tree. Validate content-type and cache policy at server level.
+
+**8. `components/`**  
+- **Type:** Shared UI component directory.  
+- **Technical responsibility:** Reusable partial component store.  
+- **Detailed notes:** Directory not present in the current implementation. Component composition is handled through `includes/header.php` and `includes/footer.php`.  
+- **Key internal files:** None under `components/`.  
+- **Security/access notes:** If introduced, enforce include-only usage and avoid direct route access.
+
+**9. `config/`**  
+- **Type:** Core configuration directory.  
+- **Technical responsibility:** Global constants and bootstrap settings.  
+- **Detailed notes:** Defines DB credentials, upload paths, size/type limits, timezone, and bootstraps error handling.  
+- **Key internal files:** `config/config.php`.  
+- **Security/access notes:** Contains environment-sensitive values; protect from direct web download and move to env-secure config in production.
+
+**10. `cron/`**  
+- **Type:** Scheduler task directory.  
+- **Technical responsibility:** Background jobs and automation tasks.  
+- **Detailed notes:** Not present in the current build. Time-bound behaviour (e.g. auction status checks) is evaluated at request-time in page/controller logic.  
+- **Key internal files:** None under `cron/`.  
+- **Security/access notes:** If introduced, execute via CLI with least-privilege DB credentials and output logging.
+
+**11. `database/`**  
+- **Type:** SQL schema and seed directory.  
+- **Technical responsibility:** Physical data model and initial dataset provisioning.  
+- **Detailed notes:** Contains canonical schema (`database.sql`) and large seeded data package (`comprehensive_seed.sql`). Used by setup scripts.  
+- **Key internal files:** `database/database.sql`, `database/comprehensive_seed.sql`.  
+- **Security/access notes:** Restrict direct HTTP access to SQL files in production to prevent schema leakage.
+
+**12. `documentation/`**  
+- **Type:** Structured project documentation directory.  
+- **Technical responsibility:** Formal docs namespace.  
+- **Detailed notes:** Not present as `documentation/`; implemented as `docs/` with setup, DFD, troubleshooting, credentials, and screen documentation.  
+- **Key internal files:** `docs/SETUP.md`, `docs/DFD_ANALYSIS.md`, `docs/TROUBLESHOOTING.md`, `docs/TEST_CREDENTIALS.md`, `docs/SCREENS_DESCRIPTION.md`.  
+- **Security/access notes:** Documentation includes operational details; avoid exposing internal credentials in deploy docs.
+
+**13. `includes/`**  
+- **Type:** Shared backend library directory.  
+- **Technical responsibility:** Middleware, helpers, DB abstraction, session/RBAC, notifications.  
+- **Detailed notes:** Core runtime layer for all routes: DB PDO helper, session policy, input validation, file upload helper, notification API, and utility formatters.  
+- **Key internal files:** `includes/session.php` (RBAC middleware), `includes/database.php`, `includes/validation.php`, `includes/file_upload_helper.php`, `includes/notifications.php`, `includes/functions.php`.  
+- **Security/access notes:** High sensitivity; must not be directly route-executed. Protect include path and avoid exposing stack traces in production mode.
+
+**14. `pages/`**  
+- **Type:** Public/neutral page routes.  
+- **Technical responsibility:** Authentication, registration, static policies, contact forms.  
+- **Detailed notes:** Hosts UI forms that post to `auth/` handlers and store contact messages.  
+- **Key internal files:** `pages/login.php` → `auth/login_process.php`; `pages/register_client.php` → `auth/register_client_process.php`; `pages/register_company.php` → `auth/register_company_process.php`; `pages/contact.php`.  
+- **Security/access notes:** Public endpoints; require strong validation and anti-automation controls (rate limit/CAPTCHA recommended).
+
+**15. `uploads/`**  
+- **Type:** Runtime storage directory.  
+- **Technical responsibility:** User-uploaded product and verification files.  
+- **Detailed notes:** Stores auction images and identity proofs generated from forms and setup scripts.  
+- **Key internal files:** `uploads/products/*`, `uploads/.htaccess`.  
+- **Security/access notes:** Current `.htaccess` blocks PHP execution and directory listing. Keep writable but non-executable.
 
 Implementation-specific file examples supporting runtime flow:
 - **Forms**: `pages/register_company.php` (multipart upload), `company/post_product.php`, `admin/settings.php`, `client/place_bid.php`.
@@ -226,70 +321,43 @@ Schema alignment note: handler files reference additional runtime columns (`comp
 | 2 | Company Verification | Verify pending company records for seller eligibility. |
 | 3 | Reporting & Monitoring | Aggregate bids, products, and financial trend indicators. |
 | 4 | Settings Management | Update site parameters and maintenance mode. |
-| 5 | System Manager Controls | Execute controlled destructive/admin automation actions via API. |
+| 5 | System Manager | High-risk operations: database wipe, upload wipe, self-destruct, bulk password reset, seed generation (requires second-stage authentication). |
 
 - `manage_users.php` + `toggle_user_status.php` map to `users.status` updates (RBAC: `admin` only).
 - `verify_companies.php` + `verify_company.php` map to `companies.verified_status`.
 - `reports.php` reads cross-table joins (`bids`, `products`, `users`) for analytics output.
 - `settings.php` writes to `site_settings` (keys: `site_name`, `maintenance_mode`, `admin_email`, `welcome_message`).
-- `system_manager.php` uses `admin/api/system_actions.php` for controlled operations on DB and `uploads/`.
+- `system_manager.php` uses `admin/api/system_actions.php` for controlled operations on DB and `uploads/`; access requires admin session plus master password.
 
-### Role-Wise Module: Student/User (Mapped to Client Role)
+### Role-Wise Module: Client (Buyer)
 
 | # | Sub-Module | Description |
 |---|---|---|
-| 1 | Product Discovery | Browse/search/filter available auctions. |
-| 2 | Bidding | Submit and track bid amounts on active auctions. |
-| 3 | Bid History | Monitor bid outcomes and auction status progression. |
-| 4 | Alerts & Subscriptions | Set reminders and manage subscription state. |
+| 1 | Product Discovery | Browse, search, and filter open auctions. |
+| 2 | Bidding | Submit and update bid amounts on active auctions. |
+| 3 | Bid History | View all placed bids and their approval/rejection status. |
+| 4 | Reminders & Subscriptions | Set product reminders for upcoming auctions; subscribe or unsubscribe from updates. |
 
 - `client/browse_products.php` form inputs `search`, `category` map to filtered reads from `products` and `companies`.
 - `client/place_bid.php` and `client/place_bid_process.php` persist bids in `bids` with `pending` workflow.
 - `client/my_bids.php` joins `bids` and `products` for historical status traceability.
 - `client/toggle_reminder.php` JSON endpoint writes/removes `product_reminders` records.
-- `client/subscribe.php` and `client/unsubscribe.php` map to subscription lifecycle (`subscriptions` table implementation expected to include user mapping fields).
+- `client/subscribe.php` and `client/unsubscribe.php` map to subscription lifecycle (`subscriptions` table; implementation may include user mapping fields).
 
-### Role-Wise Module: Staff (Mapped to Company/Seller Role)
+### Role-Wise Module: Company (Seller)
 
 | # | Sub-Module | Description |
 |---|---|---|
-| 1 | Product Posting | Create auction listings with media and schedule. |
-| 2 | Listing Control | View own products and update listing details. |
-| 3 | Bid Evaluation | Review incoming bids and approve/reject bidders. |
-| 4 | Seller Dashboard | Monitor inventory and bid counts. |
+| 1 | Product Posting | Create auction listings with images and bid window. |
+| 2 | Listing Control | View own products, edit details, and delete listings. |
+| 3 | Bid Evaluation | View bids per product; approve or reject pending bids. |
+| 4 | Seller Dashboard | Overview of own products and bid counts. |
 
 - `company/post_product.php` form payload maps to `products` + `product_gallery` inserts via `company/post_product_process.php`.
 - `company/my_products.php` lists company-owned products and linked bid counts.
-- `company/view_bids.php` executes bid status transitions (`pending` -> `approved/rejected`) in `bids`.
+- `company/view_bids.php` executes bid status transitions (`pending` → `approved`/`rejected`) in `bids`.
 - Approval/rejection triggers notification generation through `includes/notifications.php` into `notifications`.
-- Ownership checks enforce isolation (`company_id` validation before viewing/editing bid contexts).
-
-### Role-Wise Module: HOD/Manager (Mapped to Operational Admin)
-
-| # | Sub-Module | Description |
-|---|---|---|
-| 1 | Operational Oversight | Track platform counts and auction activity health. |
-| 2 | Compliance Review | Ensure company verification and role/state compliance. |
-| 3 | Incident Controls | Use maintenance mode and controlled interventions. |
-
-- `admin/dashboard.php` aggregates operational KPIs from `users`, `companies`, `products`, and `bids`.
-- `admin/verify_companies.php` supports managerial verification queue processing.
-- `admin/settings.php` toggles site-level operation state (`maintenance_mode` key).
-- `maintenance.php` enforces runtime maintenance redirect logic for non-admin users.
-
-### Role-Wise Module: Principal/Super Admin (Mapped to Privileged Admin + System Manager)
-
-| # | Sub-Module | Description |
-|---|---|---|
-| 1 | Privileged Authentication | Secondary password gate for high-risk controls. |
-| 2 | System Reset/Wipe | Database and storage wipe modes with API orchestration. |
-| 3 | Credential Recovery | Bulk password reset for selected users. |
-| 4 | Seed/Data Engineering | Generate and package seed datasets with media references. |
-
-- `admin/system_manager.php` requires `admin` session + `system_manager_auth` master password flow.
-- `admin/api/system_actions.php` routes privileged actions (`db_wipe`, `upload_wipe`, `self_destruct`, `reset_password`, `generate_seed`).
-- Reset and wipe operations directly affect `users`, dependent tables, and `uploads/` filesystem.
-- Seed generation binds to `includes/seed_generator.php` and outputs SQL/data package artifacts.
+- Ownership checks enforce isolation (`company_id` validation before viewing or editing bid contexts).
 
 ---
 
