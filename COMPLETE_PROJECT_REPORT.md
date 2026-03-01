@@ -623,7 +623,7 @@ Partnering with logistics providers to show estimated shipping costs directly on
 #### 04. Register Client -- `pages/register_client.php`
 
 **Screenshot:**
-![Register Client](docs/screenshots/viewport/04_reg_client_viewport.png)
+![Register Client](docs/screenshots/viewport/04_register_client_viewport.png)
 
 **Description:** The client registration form allows new buyers to create an account on the platform. Fields include full name, email address, phone number, address, and password with a confirmation field. Upon submission, the system validates all inputs, checks for duplicate email addresses, hashes the password with bcrypt, and creates a new user record with the `client` role. Client accounts are immediately active and can begin browsing and bidding upon registration completion.
 
@@ -632,7 +632,7 @@ Partnering with logistics providers to show estimated shipping costs directly on
 #### 05. Register Company -- `pages/register_company.php`
 
 **Screenshot:**
-![Register Company](docs/screenshots/viewport/05_reg_company_viewport.png)
+![Register Company](docs/screenshots/viewport/05_register_company_viewport.png)
 
 **Description:** The company registration form enables business entities to apply as verified sellers on the platform. In addition to standard user fields (name, email, contact, address), it collects business-specific data including company name, owner name, and GST registration number. Upon submission, an account is created with `company` role and `pending` verification status. The company cannot list products until an administrator reviews and approves the GST details through the verification queue.
 
