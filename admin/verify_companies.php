@@ -6,7 +6,7 @@ require_login('admin');
 $sql = "SELECT c.*, u.name, u.email, u.contact, u.address, u.created_at 
         FROM companies c 
         INNER JOIN users u ON c.user_id = u.user_id 
-        ORDER BY c.verified_status ASC, c.created_at DESC";
+        ORDER BY c.verified_status ASC, u.created_at DESC";
 $companies = fetch_all($sql);
 ?>
 
@@ -46,16 +46,9 @@ $companies = fetch_all($sql);
                             </div>
                         </td>
                         <td>
-                            <div style="margin-bottom: 0.5rem; font-size: 0.875rem;">
-                                GST: <?php echo htmlspecialchars($company['gst_number'] ?: 'N/A'); ?>
+                            <div style="font-size: 0.875rem;">
+                                <strong>GST:</strong> <?php echo htmlspecialchars($company['gst_number'] ?: 'N/A'); ?>
                             </div>
-                            <?php if ($company['identity_proof']): ?>
-                                <a href="<?php echo APP_URL; ?>/uploads/identity_proofs/<?php echo $company['identity_proof']; ?>" target="_blank" class="btn btn-sm btn-info" style="font-size: 0.75rem;">
-                                    View Proof
-                                </a>
-                            <?php else: ?>
-                                <span class="badge badge-secondary">No Proof</span>
-                            <?php endif; ?>
                         </td>
                         <td>
                             <span class="badge badge-<?php echo $company['verified_status'] === 'verified' ? 'success' : 'warning'; ?>">

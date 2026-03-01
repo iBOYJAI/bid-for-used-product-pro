@@ -49,3 +49,5 @@
 2026-01-04 10:37:58 | Database connection failed | Context: {"host":"localhost","database":"bid_for_used_product","error":"SQLSTATE[HY000] [1049] Unknown database 'bid_for_used_product'"}
 2026-02-24 04:50:37 | Exception: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'b.bid_date' in 'order clause' in C:\xampp\htdocs\bid_for_used_product\includes\database.php on line 118
 2026-02-24 04:50:56 | Exception: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'b.bid_date' in 'order clause' in C:\xampp\htdocs\bid_for_used_product\includes\database.php on line 118
+2026-03-01 18:23:10 | Exception: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'c.created_at' in 'order clause' in C:\xampp\htdocs\bid_for_used_product\includes\database.php on line 118
+2026-03-01 18:23:49 | Exception: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'cm.user_id' in 'on clause' in C:\xampp\htdocs\bid_for_used_product\includes\database.php on line 118

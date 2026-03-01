@@ -36,6 +36,7 @@ CREATE TABLE companies (
     company_name VARCHAR(150),
     owner_name VARCHAR(100),
     gst_number VARCHAR(50),
+    identity_proof TEXT DEFAULT NULL,
     verified_status ENUM('pending','verified','rejected') DEFAULT 'pending',
     FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
 );

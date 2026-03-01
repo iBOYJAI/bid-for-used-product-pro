@@ -8,10 +8,7 @@ if (get_user_role() !== 'admin') {
     die("Access Denied");
 }
 
-$messages = fetch_all("SELECT cm.*, u.role, u.name as user_name 
-                       FROM contact_messages cm 
-                       LEFT JOIN users u ON cm.user_id = u.user_id 
-                       ORDER BY cm.created_at DESC");
+$messages = fetch_all("SELECT * FROM contact_messages ORDER BY created_at DESC");
 ?>
 
 <div class="container" style="padding: 2rem 1.5rem;">
@@ -37,20 +34,11 @@ $messages = fetch_all("SELECT cm.*, u.role, u.name as user_name
                     <?php foreach ($messages as $msg): ?>
                         <tr style="border-bottom: 1px solid var(--border-color);">
                             <td style="padding: 1rem;">
-                                <?php if ($msg['role']): ?>
-                                    <span class="badge badge-<?php echo $msg['role'] === 'company' ? 'primary' : 'success'; ?>">
-                                        <?php echo ucfirst($msg['role']); ?>
-                                    </span>
-                                <?php else: ?>
-                                    <span class="badge badge-secondary">Guest</span>
-                                <?php endif; ?>
+                                <span class="badge badge-secondary">Guest</span>
                             </td>
                             <td style="padding: 1rem;">
                                 <div style="font-weight: 500;"><?php echo htmlspecialchars($msg['name']); ?></div>
                                 <div style="font-size: 0.85rem; color: var(--text-muted);"><?php echo htmlspecialchars($msg['email']); ?></div>
-                                <?php if ($msg['user_id']): ?>
-                                    <div style="font-size: 0.75rem; color: var(--primary);">ID: <?php echo $msg['user_id']; ?></div>
-                                <?php endif; ?>
                             </td>
                             <td style="padding: 1rem; max-width: 300px;">
                                 <div style="font-weight: 500; margin-bottom: 0.25rem;"><?php echo htmlspecialchars($msg['subject']); ?></div>
