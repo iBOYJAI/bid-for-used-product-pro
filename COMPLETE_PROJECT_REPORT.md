@@ -526,10 +526,44 @@ The system was tested by target user personas: Admins, Companies, and Clients.
 
 ---
 
-# CHAPTER 5: CONCLUSION AND SUGGESTIONS
+## 5.1 Conclusion
+
+The development of the **Bid For Used Product** platform successfully addressed the critical inefficiencies and lack of transparency in the used vehicle and machinery market in Tamil Nadu. By digitizing the auction process and implementing a robust **GST-based verification model**, the system has created a secure and trusted environment for both sellers and buyers.
+
+Key achievements of the project include:
+- **Enhanced Transparency**: Real-time bidding and public audit trails ensure fair market pricing.
+- **Improved Security**: Role-Based Access Control (RBAC) and data sanitization safeguard user information and transactional integrity.
+- **Operational Efficiency**: Automated auction lifecycles reduce the time and geographic constraints of traditional manual auctions.
+- **Scalable Architecture**: The three-tier client-server model provides a solid foundation for future growth and feature expansion.
+
+In conclusion, this project demonstrates the transformative power of web-based solutions in modernizing traditional regional markets, providing a professional and efficient marketplace for industrial and agricultural assets.
+
+---
 
 ## 5.2 Suggestions for Future Enhancement
-(Existing content remains valid)
+
+While the current system provides a comprehensive baseline for a digital auction marketplace, several key enhancements are recommended for future development stages to increase its competitiveness and user experience:
+
+### 1. Payment Gateway Integration
+Integration of secure payment gateways (e.g., Razorpay, Stripe) to automate security deposit handling, auction winner payments, and platform commission processing.
+
+### 2. Mobile Native Applications
+Development of native Android and iOS applications to provide buyers with push notifications for outbid alerts and real-time auction monitoring on the go.
+
+### 3. Automated SMS & Email Notifications
+Implementing an external messaging service (e.g., Twilio, SendGrid) to send critical alerts directly to users' mobile phones and email inboxes, reducing reliance on in-app notifications.
+
+### 4. AI-Powered Price Recommendations
+Leveraging machine learning algorithms to suggest optimal base prices for sellers based on historical auction data for similar products and market trends.
+
+### 5. Advanced Search and Filters
+Enhancing the product discovery experience with location-based searching, price range sliders, and multi-category filtering to help buyers find assets more efficiently.
+
+### 6. Video Integration
+Allowing sellers to upload short video walkarounds of machinery and vehicles to provide buyers with a more detailed and trusted view of the asset's condition.
+
+### 7. Integrated Logistics Support
+Partnering with logistics providers to show estimated shipping costs directly on the product listing page and enabling buyers to book transport services upon winning an auction.
 
 ---
 
@@ -561,11 +595,8 @@ The system was tested by target user personas: Admins, Companies, and Clients.
 
 #### 01. Homepage -- `index.php`
 
-**Viewport Screenshot:**
-![Homepage - Viewport](docs/screenshots/viewport/01_home_viewport.png)
-
-**Full Page Screenshot:**
-![Homepage - Full](docs/screenshots/full/01_home_full.png)
+**Screenshot:**
+![Homepage](docs/screenshots/viewport/01_home_viewport.png)
 
 **Description:** The homepage is the primary public-facing entry point of the platform. It displays the site branding with the "Bid For Used Product" title, a hero section with a call-to-action for browsing active auctions, and a preview grid of current open listings showing product images, category badges, base prices, and remaining auction time. The navigation bar provides links to Login, Register, Products, and Contact. This page is accessible to all visitors without authentication.
 
@@ -573,11 +604,8 @@ The system was tested by target user personas: Admins, Companies, and Clients.
 
 #### 02. Products Catalog -- `products.php`
 
-**Viewport Screenshot:**
-![Products Catalog - Viewport](docs/screenshots/viewport/02_products_viewport.png)
-
-**Full Page Screenshot:**
-![Products Catalog - Full](docs/screenshots/full/02_products_full.png)
+**Screenshot:**
+![Products Catalog](docs/screenshots/viewport/02_products_viewport.png)
 
 **Description:** The products catalog page displays all active and available auction listings across the platform in a filterable grid layout. Each product card shows the item image, product name, category (e.g., Tractor, JCB, Car), current highest bid amount, base price, and time remaining until auction closes. Visitors can filter listings by category using the sidebar or search bar. No login is required to browse this page, making it key for attracting buyers to the platform.
 
@@ -585,11 +613,8 @@ The system was tested by target user personas: Admins, Companies, and Clients.
 
 #### 03. Login Page -- `pages/login.php`
 
-**Viewport Screenshot:**
-![Login Page - Viewport](docs/screenshots/viewport/03_login_viewport.png)
-
-**Full Page Screenshot:**
-![Login Page - Full](docs/screenshots/full/03_login_full.png)
+**Screenshot:**
+![Login Page](docs/screenshots/viewport/03_login_viewport.png)
 
 **Description:** The login page provides a clean, centered authentication form accepting an email address and password. On successful credential verification (bcrypt hash comparison), users are redirected to their role-appropriate dashboard -- Admin Panel, Company Dashboard, or Client Dashboard. The form includes visual feedback for invalid credentials and a link to the Forgot Password workflow. Session management and regeneration are handled upon successful login to prevent session fixation attacks.
 
@@ -597,11 +622,8 @@ The system was tested by target user personas: Admins, Companies, and Clients.
 
 #### 04. Register Client -- `pages/register_client.php`
 
-**Viewport Screenshot:**
-![Register Client - Viewport](docs/screenshots/viewport/04_reg_client_viewport.png)
-
-**Full Page Screenshot:**
-![Register Client - Full](docs/screenshots/full/04_reg_client_full.png)
+**Screenshot:**
+![Register Client](docs/screenshots/viewport/04_reg_client_viewport.png)
 
 **Description:** The client registration form allows new buyers to create an account on the platform. Fields include full name, email address, phone number, address, and password with a confirmation field. Upon submission, the system validates all inputs, checks for duplicate email addresses, hashes the password with bcrypt, and creates a new user record with the `client` role. Client accounts are immediately active and can begin browsing and bidding upon registration completion.
 
@@ -609,11 +631,8 @@ The system was tested by target user personas: Admins, Companies, and Clients.
 
 #### 05. Register Company -- `pages/register_company.php`
 
-**Viewport Screenshot:**
-![Register Company - Viewport](docs/screenshots/viewport/05_reg_company_viewport.png)
-
-**Full Page Screenshot:**
-![Register Company - Full](docs/screenshots/full/05_reg_company_full.png)
+**Screenshot:**
+![Register Company](docs/screenshots/viewport/05_reg_company_viewport.png)
 
 **Description:** The company registration form enables business entities to apply as verified sellers on the platform. In addition to standard user fields (name, email, contact, address), it collects business-specific data including company name, owner name, and GST registration number. Upon submission, an account is created with `company` role and `pending` verification status. The company cannot list products until an administrator reviews and approves the GST details through the verification queue.
 
@@ -621,11 +640,8 @@ The system was tested by target user personas: Admins, Companies, and Clients.
 
 #### 06. Contact Page -- `pages/contact.php`
 
-**Viewport Screenshot:**
-![Contact Page - Viewport](docs/screenshots/viewport/06_contact_viewport.png)
-
-**Full Page Screenshot:**
-![Contact Page - Full](docs/screenshots/full/06_contact_full.png)
+**Screenshot:**
+![Contact Page](docs/screenshots/viewport/06_contact_viewport.png)
 
 **Description:** The contact page provides a support and inquiry form for any visitor or registered user to communicate with the platform administrators. The form collects the sender's name, email address, subject, and a detailed message body. Submitted messages are stored in the `contact_messages` database table and can be reviewed by the admin through the Messages section of the admin panel. This serves as the primary customer support channel for the platform.
 
@@ -634,11 +650,8 @@ The system was tested by target user personas: Admins, Companies, and Clients.
 
 #### 07. Terms and Conditions -- `pages/terms.php`
 
-**Viewport Screenshot:**
-![Terms - Viewport](docs/screenshots/viewport/07_terms_viewport.png)
-
-**Full Page Screenshot:**
-![Terms - Full](docs/screenshots/full/07_terms_full.png)
+**Screenshot:**
+![Terms](docs/screenshots/viewport/07_terms_viewport.png)
 
 **Description:** The Terms and Conditions page outlines the legal agreements governing platform usage. It covers user eligibility requirements, registration obligations, prohibited activities, seller and buyer responsibilities in auction transactions, intellectual property rights, the platform's liability limitations, and the procedures for account termination. All users are required to agree to these terms during the registration process. The page is fully accessible without authentication.
 
@@ -646,11 +659,8 @@ The system was tested by target user personas: Admins, Companies, and Clients.
 
 #### 08. Privacy Policy -- `pages/privacy.php`
 
-**Viewport Screenshot:**
-![Privacy - Viewport](docs/screenshots/viewport/08_privacy_viewport.png)
-
-**Full Page Screenshot:**
-![Privacy - Full](docs/screenshots/full/08_privacy_full.png)
+**Screenshot:**
+![Privacy](docs/screenshots/viewport/08_privacy_viewport.png)
 
 **Description:** The Privacy Policy page documents how the platform collects, stores, uses, and protects user data in compliance with applicable data protection standards. It specifies which personal information is collected during registration (name, email, contact, address, GST details), how data is used for service delivery and notifications, the data retention policy, and user rights regarding their personal information. This page serves as the privacy disclosure document for all platform participants.
 
@@ -658,11 +668,8 @@ The system was tested by target user personas: Admins, Companies, and Clients.
 
 #### 09. Forgot Password -- `pages/forgot_password.php`
 
-**Viewport Screenshot:**
-![Forgot Password - Viewport](docs/screenshots/viewport/09_forgot_password_viewport.png)
-
-**Full Page Screenshot:**
-![Forgot Password - Full](docs/screenshots/full/09_forgot_password_full.png)
+**Screenshot:**
+![Forgot Password](docs/screenshots/viewport/09_forgot_password_viewport.png)
 
 **Description:** The Forgot Password page provides an account recovery mechanism for users who have lost access to their accounts. The form accepts the registered email address and initiates the password reset workflow. This page is accessible without authentication and is linked from the Login page. The form provides clear instructions and feedback messaging to guide users through the recovery process.
 
@@ -676,11 +683,8 @@ The system was tested by target user personas: Admins, Companies, and Clients.
 
 #### 10. Admin Dashboard -- `admin/dashboard.php`
 
-**Viewport Screenshot:**
-![Admin Dashboard - Viewport](docs/screenshots/viewport/10_admin_dashboard_viewport.png)
-
-**Full Page Screenshot:**
-![Admin Dashboard - Full](docs/screenshots/full/10_admin_dashboard_full.png)
+**Screenshot:**
+![Admin Dashboard](docs/screenshots/viewport/10_admin_dashboard_viewport.png)
 
 **Description:** The Admin Dashboard is the central command interface for the platform administrator. It displays a summary of key system metrics including total registered users, total company registrations, total products listed, and total bids placed. The dashboard also contains a quick-action panel with shortcuts to User Management, Company Verification, Reports, and System Settings. Recent activity feeds show the latest user registrations, product listings, and bid transactions for real-time platform monitoring.
 
@@ -688,11 +692,8 @@ The system was tested by target user personas: Admins, Companies, and Clients.
 
 #### 11. Manage Users -- `admin/manage_users.php`
 
-**Viewport Screenshot:**
-![Manage Users - Viewport](docs/screenshots/viewport/11_admin_manage_users_viewport.png)
-
-**Full Page Screenshot:**
-![Manage Users - Full](docs/screenshots/full/11_admin_manage_users_full.png)
+**Screenshot:**
+![Manage Users](docs/screenshots/viewport/11_admin_manage_users_viewport.png)
 
 **Description:** The Manage Users page provides the administrator with a full directory of all registered platform users. The table displays each user's name, email address, assigned role (admin, company, client), account status (active, inactive, banned), and registration date. The administrator can toggle user status between active and banned using inline action buttons, enabling platform access control. Search and filter capabilities allow quick lookup of specific users by name, email, or role.
 
@@ -700,11 +701,8 @@ The system was tested by target user personas: Admins, Companies, and Clients.
 
 #### 12. Verify Companies -- `admin/verify_companies.php`
 
-**Viewport Screenshot:**
-![Verify Companies - Viewport](docs/screenshots/viewport/12_admin_verify_companies_viewport.png)
-
-**Full Page Screenshot:**
-![Verify Companies - Full](docs/screenshots/full/12_admin_verify_companies_full.png)
+**Screenshot:**
+![Verify Companies](docs/screenshots/viewport/12_admin_verify_companies_viewport.png)
 
 **Description:** The Verify Companies page displays the queue of all registered company (seller) accounts for administrator review. Each entry shows the company name, owner's contact details (email and phone), GST registration number, and current verification status (Pending or Verified). The administrator can approve pending company applications using the "Approve" action button, which updates the company's `verified_status` to `verified` and grants them access to list products on the platform. This GST-based verification step is critical to the platform's seller authentication model.
 
@@ -712,11 +710,8 @@ The system was tested by target user personas: Admins, Companies, and Clients.
 
 #### 13. View All Products -- `admin/view_all_products.php`
 
-**Viewport Screenshot:**
-![View All Products - Viewport](docs/screenshots/viewport/13_admin_view_products_viewport.png)
-
-**Full Page Screenshot:**
-![View All Products - Full](docs/screenshots/full/13_admin_view_products_full.png)
+**Screenshot:**
+![View All Products](docs/screenshots/viewport/13_admin_view_products_viewport.png)
 
 **Description:** The View All Products page gives the administrator a comprehensive, platform-wide view of every product listing regardless of which company posted it. The table shows product name, category, listing company, base price, current auction status (open, closed, sold), auction deadline, and total number of bids received. This page enables administrative oversight of all inventory, allowing the admin to monitor auction health, identify anomalies, and take corrective action on problematic listings through a centralized interface.
 
@@ -724,11 +719,8 @@ The system was tested by target user personas: Admins, Companies, and Clients.
 
 #### 14. View All Bids -- `admin/view_all_bids.php`
 
-**Viewport Screenshot:**
-![View All Bids - Viewport](docs/screenshots/viewport/14_admin_view_bids_viewport.png)
-
-**Full Page Screenshot:**
-![View All Bids - Full](docs/screenshots/full/14_admin_view_bids_full.png)
+**Screenshot:**
+![View All Bids](docs/screenshots/viewport/14_admin_view_bids_viewport.png)
 
 **Description:** The View All Bids page presents a complete ledger of every bid ever submitted on the platform. Each record shows the product name, the bidding client's name and email, the bid amount, bid status (pending, approved, rejected), and the exact timestamp of submission. This provides a full audit trail of all financial offers on the platform, allowing the administrator to track bidding activity, investigate disputes, and monitor the integrity of the competitive bidding engine across all active and completed auctions.
 
@@ -736,11 +728,8 @@ The system was tested by target user personas: Admins, Companies, and Clients.
 
 #### 15. Reports -- `admin/reports.php`
 
-**Viewport Screenshot:**
-![Reports - Viewport](docs/screenshots/viewport/15_admin_reports_viewport.png)
-
-**Full Page Screenshot:**
-![Reports - Full](docs/screenshots/full/15_admin_reports_full.png)
+**Screenshot:**
+![Reports](docs/screenshots/viewport/15_admin_reports_viewport.png)
 
 **Description:** The Reports page provides the administrator with a structured analytics dashboard summarizing platform performance metrics. Charts and summary tables present data on total platform revenue (aggregate bid amounts), number of auctions completed, new user registrations over time, company application trends, and bid volume statistics. These analytics support data-driven decision-making for platform governance, marketing improvement, and operational scaling. The reports give a high-level view of platform health and growth trajectory.
 
@@ -748,11 +737,8 @@ The system was tested by target user personas: Admins, Companies, and Clients.
 
 #### 16. Messages -- `admin/messages.php`
 
-**Viewport Screenshot:**
-![Messages - Viewport](docs/screenshots/viewport/16_admin_messages_viewport.png)
-
-**Full Page Screenshot:**
-![Messages - Full](docs/screenshots/full/16_admin_messages_full.png)
+**Screenshot:**
+![Messages](docs/screenshots/viewport/16_admin_messages_viewport.png)
 
 **Description:** The Messages page is the administrator's inbox for all contact form submissions received from the Contact Us page. Each message entry displays the sender's name, email address, subject line, message content preview, and the submission timestamp. The admin can click "View" to read the complete message body. This serves as the primary customer support inbox, allowing the admin team to respond to user inquiries, technical issues, and business feedback received through the platform's public contact channel.
 
@@ -760,11 +746,8 @@ The system was tested by target user personas: Admins, Companies, and Clients.
 
 #### 17. Settings -- `admin/settings.php`
 
-**Viewport Screenshot:**
-![Settings - Viewport](docs/screenshots/viewport/17_admin_settings_viewport.png)
-
-**Full Page Screenshot:**
-![Settings - Full](docs/screenshots/full/17_admin_settings_full.png)
+**Screenshot:**
+![Settings](docs/screenshots/viewport/17_admin_settings_viewport.png)
 
 **Description:** The Settings page allows the administrator to configure platform-level operational parameters. Key configurable settings include the Site Name, Maintenance Mode toggle (enables or disables the maintenance screen for all non-admin users), and other system configuration values stored in the `site_settings` table. Changes made here immediately affect platform behavior. The maintenance mode feature is particularly useful for applying database updates or code deployments without disrupting active users.
 
@@ -772,11 +755,8 @@ The system was tested by target user personas: Admins, Companies, and Clients.
 
 #### 18. System Manager -- `admin/system_manager.php`
 
-**Viewport Screenshot:**
-![System Manager - Viewport](docs/screenshots/viewport/18_admin_system_manager_viewport.png)
-
-**Full Page Screenshot:**
-![System Manager - Full](docs/screenshots/full/18_admin_system_manager_full.png)
+**Screenshot:**
+![System Manager](docs/screenshots/viewport/18_admin_system_manager_viewport.png)
 
 **Description:** The System Manager is an advanced administrative control panel providing deep system-level controls and diagnostics. It displays server environment information (PHP version, MySQL version, server OS), application performance metrics, error log access, cache and session management utilities, and database health indicators. This page is intended for technical administrators to perform maintenance operations, debug system-level issues, and ensure the application infrastructure remains healthy and secure.
 
@@ -784,11 +764,8 @@ The system was tested by target user personas: Admins, Companies, and Clients.
 
 #### 19. Add User -- `admin/add_user.php`
 
-**Viewport Screenshot:**
-![Add User - Viewport](docs/screenshots/viewport/19_admin_add_user_viewport.png)
-
-**Full Page Screenshot:**
-![Add User - Full](docs/screenshots/full/19_admin_add_user_full.png)
+**Screenshot:**
+![Add User](docs/screenshots/viewport/19_admin_add_user_viewport.png)
 
 **Description:** The Add User page allows an administrator to create new user accounts directly without requiring the standard public registration workflow. The form accepts name, email, password, role (admin, company, or client), and account status. This tool is used for onboarding specific users (such as additional admin accounts or pre-approved company accounts) without exposing them to the public registration process. Passwords are hashed using bcrypt before storage, maintaining the same security standards as self-registered accounts.
 
@@ -802,11 +779,8 @@ The system was tested by target user personas: Admins, Companies, and Clients.
 
 #### 20. Company Dashboard -- `company/dashboard.php`
 
-**Viewport Screenshot:**
-![Company Dashboard - Viewport](docs/screenshots/viewport/20_company_dashboard_viewport.png)
-
-**Full Page Screenshot:**
-![Company Dashboard - Full](docs/screenshots/full/20_company_dashboard_full.png)
+**Screenshot:**
+![Company Dashboard](docs/screenshots/viewport/20_company_dashboard_viewport.png)
 
 **Description:** The Company Dashboard is the seller's home screen after login, providing an overview of their auction activity. Key metrics displayed include the total number of products currently listed, the number of active bids received across all listings, total closed auctions, and recent bid notifications. Quick-action buttons navigate to Post a New Product, My Products inventory, and View Bids. This dashboard serves as the operational center for sellers to monitor their auction portfolio and respond to buyer activity in real time.
 
@@ -814,11 +788,8 @@ The system was tested by target user personas: Admins, Companies, and Clients.
 
 #### 21. Post Product -- `company/post_product.php`
 
-**Viewport Screenshot:**
-![Post Product - Viewport](docs/screenshots/viewport/21_company_post_product_viewport.png)
-
-**Full Page Screenshot:**
-![Post Product - Full](docs/screenshots/full/21_company_post_product_full.png)
+**Screenshot:**
+![Post Product](docs/screenshots/viewport/21_company_post_product_viewport.png)
 
 **Description:** The Post Product page is the primary product listing creation interface for verified company sellers. The form collects comprehensive product information including product name, category (Vehicles, Tractors, JCB, Harvesters, etc.), model, manufacturing year, chassis number, owner details, running duration, base auction price, auction start and end dates, main product image upload, and a detailed description. The form includes real-time validation to ensure all required fields are properly filled before submission, with uploaded images stored in the `uploads/` directory.
 
@@ -826,11 +797,8 @@ The system was tested by target user personas: Admins, Companies, and Clients.
 
 #### 22. My Products -- `company/my_products.php`
 
-**Viewport Screenshot:**
-![My Products - Viewport](docs/screenshots/viewport/22_company_my_products_viewport.png)
-
-**Full Page Screenshot:**
-![My Products - Full](docs/screenshots/full/22_company_my_products_full.png)
+**Screenshot:**
+![My Products](docs/screenshots/viewport/22_company_my_products_viewport.png)
 
 **Description:** The My Products page shows the company's complete inventory of listed auction items. Each product row displays the product name, category, base price, current highest bid amount, auction status (open/closed/sold), auction expiry date, total bids received, and action buttons for editing, viewing bids, or deleting the listing. This page gives sellers a consolidated view of their entire auction portfolio with real-time bid and status data, enabling them to manage multiple listings simultaneously and identify auctions needing attention.
 
@@ -838,11 +806,8 @@ The system was tested by target user personas: Admins, Companies, and Clients.
 
 #### 23. View Bids -- `company/view_bids.php`
 
-**Viewport Screenshot:**
-![View Bids - Viewport](docs/screenshots/viewport/23_company_view_bids_viewport.png)
-
-**Full Page Screenshot:**
-![View Bids - Full](docs/screenshots/full/23_company_view_bids_full.png)
+**Screenshot:**
+![View Bids](docs/screenshots/viewport/23_company_view_bids_viewport.png)
 
 **Description:** The View Bids page provides a detailed breakdown of all bids received for a specific product listing. The table shows each bidder's name, email, bid amount, bid placement time, and current bid status (pending, approved, or rejected). The product details (name, base price, auction deadline) are shown at the top for reference. The seller can approve the winning bid using the "Approve" button, which closes the auction and marks the product as sold, or reject individual bids if necessary.
 
@@ -850,11 +815,8 @@ The system was tested by target user personas: Admins, Companies, and Clients.
 
 #### 24. Edit Product -- `company/edit_product.php`
 
-**Viewport Screenshot:**
-![Edit Product - Viewport](docs/screenshots/viewport/24_company_edit_product_viewport.png)
-
-**Full Page Screenshot:**
-![Edit Product - Full](docs/screenshots/full/24_company_edit_product_full.png)
+**Screenshot:**
+![Edit Product](docs/screenshots/viewport/24_company_edit_product_viewport.png)
 
 **Description:** The Edit Product page allows a seller to modify the details of an existing product listing. All fields from the original Post Product form are pre-populated with current values and are editable: product name, category, model, year, chassis number, base price, auction dates, description, and product image. This enables sellers to correct errors, update pricing before bids begin, extend auction deadlines, or refresh product information. Changes are validated before saving and take effect immediately on the public product catalog.
 
@@ -868,11 +830,8 @@ The system was tested by target user personas: Admins, Companies, and Clients.
 
 #### 25. Client Dashboard -- `client/dashboard.php`
 
-**Viewport Screenshot:**
-![Client Dashboard - Viewport](docs/screenshots/viewport/25_client_dashboard_viewport.png)
-
-**Full Page Screenshot:**
-![Client Dashboard - Full](docs/screenshots/full/25_client_dashboard_full.png)
+**Screenshot:**
+![Client Dashboard](docs/screenshots/viewport/25_client_dashboard_viewport.png)
 
 **Description:** The Client Dashboard is the buyer's personalized home screen after login. It summarizes the client's bidding activity including: total bids placed, number of currently winning bids, auctions where the client has been outbid, and completed auctions. Quick-access cards link to Browse Products, My Bids history, and Watchlist. Notification alerts for recent bid status changes (outbid alerts, auction close alerts) are prominently displayed. This dashboard gives buyers a clear snapshot of their auction participation status.
 
@@ -880,11 +839,8 @@ The system was tested by target user personas: Admins, Companies, and Clients.
 
 #### 26. Browse Products -- `client/browse_products.php`
 
-**Viewport Screenshot:**
-![Browse Products - Viewport](docs/screenshots/viewport/26_client_browse_products_viewport.png)
-
-**Full Page Screenshot:**
-![Browse Products - Full](docs/screenshots/full/26_client_browse_products_full.png)
+**Screenshot:**
+![Browse Products](docs/screenshots/viewport/26_client_browse_products_viewport.png)
 
 **Description:** The Browse Products page is the buyer-specific product discovery interface with enhanced filtering and interactivity compared to the public catalog. Buyers can filter listings by category, price range, and auction status. Each product card shows the current highest bid, time remaining, and a quick "Place Bid" action button. Authenticated clients can also toggle the Watchlist reminder feature directly from this page. The interface dynamically updates product statuses and bid amounts to give buyers an accurate real-time view of available auctions.
 
@@ -892,11 +848,8 @@ The system was tested by target user personas: Admins, Companies, and Clients.
 
 #### 27. My Bids -- `client/my_bids.php`
 
-**Viewport Screenshot:**
-![My Bids - Viewport](docs/screenshots/viewport/27_client_my_bids_viewport.png)
-
-**Full Page Screenshot:**
-![My Bids - Full](docs/screenshots/full/27_client_my_bids_full.png)
+**Screenshot:**
+![My Bids](docs/screenshots/viewport/27_client_my_bids_viewport.png)
 
 **Description:** The My Bids page displays the complete bidding history for the logged-in client. Each entry shows the product name with a thumbnail, the bid amount the client submitted, the current highest bid on that product, bid status (Pending, Winning, Outbid, or Auction Closed), and the auction deadline. Color-coded status badges make it easy for buyers to quickly identify which auctions they are currently winning versus those where they have been outbid, providing actionable insight to place updated competitive bids.
 
@@ -910,11 +863,8 @@ The system was tested by target user personas: Admins, Companies, and Clients.
 
 #### 28. User Profile -- `profile.php`
 
-**Viewport Screenshot:**
-![Profile - Viewport](docs/screenshots/viewport/28_profile_viewport.png)
-
-**Full Page Screenshot:**
-![Profile - Full](docs/screenshots/full/28_profile_full.png)
+**Screenshot:**
+![Profile](docs/screenshots/viewport/28_profile_viewport.png)
 
 **Description:** The User Profile page provides all authenticated users (admin, company, and client) with an account management interface. Users can update their personal information including full name, email address, phone number, and physical address. A dedicated password change section requires entering the current password before accepting a new one, providing an additional security layer. Profile data changes are validated and saved to the `users` table. The page is role-neutral and serves as the common account settings panel across all user types.
 
@@ -922,11 +872,8 @@ The system was tested by target user personas: Admins, Companies, and Clients.
 
 #### 29. Notifications -- `notifications.php`
 
-**Viewport Screenshot:**
-![Notifications - Viewport](docs/screenshots/viewport/29_notifications_viewport.png)
-
-**Full Page Screenshot:**
-![Notifications - Full](docs/screenshots/full/29_notifications_full.png)
+**Screenshot:**
+![Notifications](docs/screenshots/viewport/29_notifications_viewport.png)
 
 **Description:** The Notifications page is the centralized alert center for all platform events relevant to the logged-in user. For clients, notifications include alerts for being outbid, winning an auction, or receiving admin announcements. For companies, notifications report new bids received on listings. Each notification entry shows the event type, message content, target link (to the related product or action), and timestamp. Unread notifications are visually highlighted, and a "Mark All Read" function clears the notification badge from the main navigation header.
 
