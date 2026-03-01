@@ -3,7 +3,7 @@
 
 **Developed by:** Jaiganesh D. (iBOY)  
 **Organization:** iBOY Innovation HUB  
-**Academic Year:** 2025â€“2026  
+**Academic Year:** 2025-2026  
 **Technology Stack:** PHP | MySQL | Apache | HTML5 | CSS3 | JavaScript
 
 ---
@@ -18,22 +18,22 @@ I am deeply grateful to **iBOY Innovation HUB** for providing the resources, inf
 
 Finally, I acknowledge the open-source community whose tools, frameworks, and documentation were invaluable in building this system efficiently.
 
-**â€” Jaiganesh D. (iBOY)**  
+**-- Jaiganesh D. (iBOY)**  
 *iBOY Innovation HUB*  
-*2025â€“2026*
+*2025-2026*
 
 ---
 
 ## SYNOPSIS
 
-The **Bid For Used Product** system is a production-ready, web-based auction marketplace developed to modernize and digitize the buying and selling of used vehicles and heavy machinery in Tamil Nadu, India. The platform directly connects **verified seller companies** with **registered buyer clients** through a transparent, real-time bidding engine â€” eliminating traditional middlemen and reducing transactional inefficiencies.
+The **Bid For Used Product** system is a production-ready, web-based auction marketplace developed to modernize and digitize the buying and selling of used vehicles and heavy machinery in Tamil Nadu, India. The platform directly connects **verified seller companies** with **registered buyer clients** through a transparent, real-time bidding engine -- eliminating traditional middlemen and reducing transactional inefficiencies.
 
 The system implements a strict **Role-Based Access Control (RBAC)** model with three primary roles:
-- **Administrator** â€” Oversees user management, company verification, and system health.
-- **Company (Seller)** â€” Lists products (vehicles and machinery) with base auction prices.
-- **Client (Buyer)** â€” Browses listings and places competitive bids.
+- **Administrator** -- Oversees user management, company verification, and system health.
+- **Company (Seller)** -- Lists products (vehicles and machinery) with base auction prices.
+- **Client (Buyer)** -- Browses listings and places competitive bids.
 
-Key functional highlights include **GST-based business verification**, **automated bid validation**, **product lifecycle management** (open â†’ closed â†’ sold), **real-time notifications**, and a comprehensive **admin control panel**. The backend is built on **PHP 8.2** with **PDO** for secure database interaction, while the frontend uses standard **HTML5, CSS3, and Vanilla JavaScript** for responsiveness and real-time AJAX calls.
+Key functional highlights include **GST-based business verification**, **automated bid validation**, **product lifecycle management** (open -> closed -> sold), **real-time notifications**, and a comprehensive **admin control panel**. The backend is built on **PHP 8.2** with **PDO** for secure database interaction, while the frontend uses standard **HTML5, CSS3, and Vanilla JavaScript** for responsiveness and real-time AJAX calls.
 
 This report documents the complete software engineering lifecycle of the project, from problem definition and system analysis through architecture design, implementation, testing, and future roadmap.
 
@@ -58,7 +58,7 @@ This report documents the complete software engineering lifecycle of the project
 | **Company Verification** | GST document upload and admin review workflow |
 | **Product Listings** | Multi-image upload with category, price, and auction deadline |
 | **Live Bidding Engine** | Real-time bid placement with validation against current highest bid |
-| **Bid Lifecycle** | Open â†’ Active â†’ Closed â†’ Winner Selected |
+| **Bid Lifecycle** | Open -> Active -> Closed -> Winner Selected |
 | **Admin Panel** | Full system control: users, products, bids, reports, settings |
 | **Notifications** | In-app notification system for bid status updates |
 | **Responsive UI** | Mobile-friendly interface using CSS Grid and Flexbox |
@@ -78,7 +78,7 @@ http://localhost/bid_for_used_product/
 | **RAM** | 4 GB | 8 GB or higher |
 | **Storage** | 20 GB HDD | 100 GB SSD |
 | **Network** | 10 Mbps Ethernet | 100 Mbps broadband |
-| **Display** | 1024Ã—768 resolution | 1920Ã—1080 Full HD |
+| **Display** | 1024x768 resolution | 1920x1080 Full HD |
 | **Operating System** | Windows 10 / Linux Ubuntu 20.04 | Windows 11 / Ubuntu 22.04 LTS |
 
 ---
@@ -104,11 +104,11 @@ http://localhost/bid_for_used_product/
 
 The traditional market for used vehicles and machinery in Tamil Nadu faces several critical challenges:
 
-1. **Lack of Price Transparency** â€” Sellers and buyers rely on agents who inflate their margins, resulting in unfair pricing for both parties.
-2. **No Verification Mechanism** â€” Unregistered and unverified sellers list fraudulent products with no accountability.
-3. **Manual and Slow Processes** â€” Auction processes are conducted manually (phone calls, visits), making them inefficient and geographically limited.
-4. **No Competitive Bidding** â€” Classified systems show fixed prices, removing the opportunity for sellers to receive the best market offer.
-5. **No Digitized Records** â€” Transaction history, bid records, and product ownership trails are maintained on paper, if at all.
+1. **Lack of Price Transparency** -- Sellers and buyers rely on agents who inflate their margins, resulting in unfair pricing for both parties.
+2. **No Verification Mechanism** -- Unregistered and unverified sellers list fraudulent products with no accountability.
+3. **Manual and Slow Processes** -- Auction processes are conducted manually (phone calls, visits), making them inefficient and geographically limited.
+4. **No Competitive Bidding** -- Classified systems show fixed prices, removing the opportunity for sellers to receive the best market offer.
+5. **No Digitized Records** -- Transaction history, bid records, and product ownership trails are maintained on paper, if at all.
 
 ### The Proposed Solution
 A structured, digital auction platform that:
@@ -150,16 +150,16 @@ HTML5, CSS3, and Vanilla JavaScript deliver responsive interfaces for all three 
 
 ### Logic Tier (Backend)
 PHP 8.2 handles all business logic including authentication, authorization, bid validation, and product lifecycle management via PDO-based database interactions.
-6
+
 ### Data Tier (Database)
 MySQL stores all relational data including users, companies, products, bids, categories, and notifications with enforced referential integrity through foreign keys.
 
 ### Advantages Over Existing Systems
-- âœ… GST-verified seller onboarding
-- âœ… Automated competitive bidding with validation
-- âœ… Complete audit trail and reporting
-- âœ… Admin-controlled user lifecycle management
-- âœ… Region-specific product categories (Tractors, JCBs, Harvesters, etc.)
+- [CHECK] GST-verified seller onboarding
+- [CHECK] Automated competitive bidding with validation
+- [CHECK] Complete audit trail and reporting
+- [CHECK] Admin-controlled user lifecycle management
+- [CHECK] Region-specific product categories (Tractors, JCBs, Harvesters, etc.)
 
 ---
 
@@ -172,70 +172,70 @@ MySQL stores all relational data including users, companies, products, bids, cat
 The following context diagram illustrates the top-level data flows between external entities and the auction system:
 
 ```
-[Admin Manager] â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-                                                               â†“
-[Seller / Company] â”€â”€â”€â”€ Product & Verification Data â”€â”€â–º [BID FOR USED PRODUCT SYSTEM] â”€â”€â–º [MySQL Database]
-                                                               â†‘
-[Buyer / Client] â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ Bid Placement â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+[Admin Manager] -------------------------------------------------------------+
+                                                                             |
+[Seller / Company] ---- Product & Verification Data ---> [BID FOR USED PRODUCT SYSTEM] ---> [MySQL Database]
+                                                                             |
+[Buyer / Client] ----------------------- Bid Placement ----------------------+
 ```
 
 **External Entities:**
-- **Admin Manager** â€” Manages system configuration, verifies sellers, controls user access.
-- **Seller (Company)** â€” Submits GST details, lists products, reviews bids, selects winners.
-- **Buyer (Client)** â€” Registers, browses products, places bids, tracks auction history.
+- **Admin Manager** -- Manages system configuration, verifies sellers, controls user access.
+- **Seller (Company)** -- Submits GST details, lists products, reviews bids, selects winners.
+- **Buyer (Client)** -- Registers, browses products, places bids, tracks auction history.
 
 ---
 
-### Level 1: Logical DFD â€” Authentication Module
+### Level 1: Logical DFD -- Authentication Module
 
 ```
-[User] â”€â”€â”€â”€ Login Credentials â”€â”€â–º [1.0 Auth Process] â”€â”€â”€â”€ Query â”€â”€â–º [Users DB]
-                                          â”‚                                â”‚
-                                    Session Token â—„â”€â”€â”€â”€â”€â”€ User Record â”€â”€â”€â”€â”€â”˜
-                                          â”‚
+[User] ---- Login Credentials ---> [1.0 Auth Process] ---- Query ---> [Users DB]
+                                          |                                 |
+                                    Session Token <--------- User Record ---+
+                                          |
                                     [Dashboard Redirect]
 ```
 
-### Level 1: Logical DFD â€” Product Listing Module
+### Level 1: Logical DFD -- Product Listing Module
 
 ```
-[Company] â”€â”€â”€â”€ Product Data + Images â”€â”€â–º [2.0 Product Manager] â”€â”€â”€â”€ Store â”€â”€â–º [Products DB]
-                                                    â”‚                               â”‚
-                                             Validation â—„â”€â”€â”€â”€â”€â”€â”€â”€ Category DB â”€â”€â”€â”€â”€â”€â”˜
-                                                    â”‚
+[Company] ---- Product Data + Images ---> [2.0 Product Manager] ---- Store ---> [Products DB]
+                                                    |                                 |
+                                             Validation <----------- Category DB -----+
+                                                    |
                                            [Listing Published]
 ```
 
-### Level 1: Logical DFD â€” Bidding Engine
+### Level 1: Logical DFD -- Bidding Engine
 
 ```
-[Client] â”€â”€â”€â”€ Bid Amount â”€â”€â–º [3.0 Bidding Engine] â”€â”€â”€â”€ Validate â”€â”€â–º [Products DB]
-                                       â”‚                                    â”‚
-                                 Check Max Bid â—„â”€â”€â”€â”€â”€â”€ Current Bids â”€â”€â”€â”€â”€â”€â”€â”€â”˜
-                                       â”‚
-                         â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+[Client] ---- Bid Amount ---> [3.0 Bidding Engine] ---- Validate ---> [Products DB]
+                                       |                                    |
+                                 Check Max Bid <--------- Current Bids -----+
+                                       |
+                         +-------------+--------------+
                     [Bid Accepted]              [Bid Rejected]
-                         â”‚
-                    [4.0 Notify] â”€â”€â”€â”€â”€â”€â–º [Notifications DB]
+                         |
+                    [4.0 Notify] ------------> [Notifications DB]
 ```
 
 ---
 
-## 3.2 Eâ€“R Diagram
+## 3.2 E-R Diagram
 
 ### Entity Relationship Overview
 
 ```
-USERS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ owns â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ COMPANIES
-  â”‚                                               â”‚
-  â”‚ places                                    lists
-  â”‚                                               â”‚
-  â–¼                                               â–¼
-BIDS â”€â”€â”€â”€â”€â”€ validates against â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ PRODUCTS
-                                               â”‚
+USERS ---------------- owns ---------------- COMPANIES
+  |                                               |
+  | places                                    lists
+  |                                               |
+  v                                               v
+BIDS -------- validates against --------- PRODUCTS
+                                               |
                                            contains
-                                               â”‚
-                                               â–¼
+                                               |
+                                               v
                                       PRODUCT_GALLERY
 ```
 
@@ -266,7 +266,7 @@ BIDS â”€â”€â”€â”€â”€â”€ validates against â”€
 
 | File | Type | Purpose |
 |:---|:---|:---|
-| `index.php` | PHP | Homepage â€” displays active auction listings |
+| `index.php` | PHP | Homepage -- displays active auction listings |
 | `products.php` | PHP | Public product catalog with search and filter |
 | `product_details.php` | PHP | Single product detail view with bidding interface |
 | `profile.php` | PHP | Authenticated user profile management |
@@ -277,7 +277,7 @@ BIDS â”€â”€â”€â”€â”€â”€ validates against â”€
 
 ---
 
-### `/auth/` â€” Authentication Processors
+### `/auth/` -- Authentication Processors
 
 | File | Purpose |
 |:---|:---|
@@ -288,7 +288,7 @@ BIDS â”€â”€â”€â”€â”€â”€ validates against â”€
 
 ---
 
-### `/pages/` â€” Public-Facing Pages
+### `/pages/` -- Public-Facing Pages
 
 | File | Purpose |
 |:---|:---|
@@ -302,7 +302,7 @@ BIDS â”€â”€â”€â”€â”€â”€ validates against â”€
 
 ---
 
-### `/admin/` â€” Administrator Module
+### `/admin/` -- Administrator Module
 
 | File | Purpose |
 |:---|:---|
@@ -321,7 +321,7 @@ BIDS â”€â”€â”€â”€â”€â”€ validates against â”€
 
 ---
 
-### `/company/` â€” Seller Module
+### `/company/` -- Seller Module
 
 | File | Purpose |
 |:---|:---|
@@ -337,7 +337,7 @@ BIDS â”€â”€â”€â”€â”€â”€ validates against â”€
 
 ---
 
-### `/client/` â€” Buyer Module
+### `/client/` -- Buyer Module
 
 | File | Purpose |
 |:---|:---|
@@ -353,7 +353,7 @@ BIDS â”€â”€â”€â”€â”€â”€ validates against â”€
 
 ---
 
-### `/dashboard/` â€” Role-Based Dashboard Redirects
+### `/dashboard/` -- Role-Based Dashboard Redirects
 
 | File | Purpose |
 |:---|:---|
@@ -363,7 +363,7 @@ BIDS â”€â”€â”€â”€â”€â”€ validates against â”€
 
 ---
 
-### `/config/` â€” Configuration
+### `/config/` -- Configuration
 
 | File | Purpose |
 |:---|:---|
@@ -371,7 +371,7 @@ BIDS â”€â”€â”€â”€â”€â”€ validates against â”€
 
 ---
 
-### `/includes/` â€” Shared Library
+### `/includes/` -- Shared Library
 
 | File | Purpose |
 |:---|:---|
@@ -383,7 +383,7 @@ BIDS â”€â”€â”€â”€â”€â”€ validates against â”€
 
 ---
 
-### `/database/` â€” Database Schema
+### `/database/` -- Database Schema
 
 | File | Purpose |
 |:---|:---|
@@ -399,10 +399,10 @@ BIDS â”€â”€â”€â”€â”€â”€ validates against â”€
 **Purpose:** Secure user identity verification and session management.
 
 **Functions:**
-- `login_process.php` â€” Accepts POST email/password, queries DB, verifies bcrypt hash, sets session variables (`user_id`, `role`, `name`), redirects to role-specific dashboard.
-- `auth.php::requireLogin()` â€” Guards all protected pages; redirects unauthenticated users to login.
-- `auth.php::requireRole($role)` â€” Grants access only to specified role(s); unauthorized users are redirected.
-- `logout.php` â€” Destroys all session data, redirects to login.
+- `login_process.php` -- Accepts POST email/password, queries DB, verifies bcrypt hash, sets session variables (`user_id`, `role`, `name`), redirects to role-specific dashboard.
+- `auth.php::requireLogin()` -- Guards all protected pages; redirects unauthenticated users to login.
+- `auth.php::requireRole($role)` -- Grants access only to specified role(s); unauthorized users are redirected.
+- `logout.php` -- Destroys all session data, redirects to login.
 
 **Security Measures:**
 - `password_hash()` with `PASSWORD_BCRYPT` on registration.
@@ -417,10 +417,10 @@ BIDS â”€â”€â”€â”€â”€â”€ validates against â”€
 **Purpose:** Ensure only legitimate, GST-registered businesses can list products.
 
 **Workflow:**
-1. Company registers via `register_company.php` â€” submits name, GST number, and supporting documents.
+1. Company registers via `register_company.php` -- submits name, GST number, and supporting documents.
 2. Account is created in `pending` status.
 3. Admin reviews submission at `admin/verify_companies.php`.
-4. Admin approves or rejects â€” `verify_company.php` updates `is_verified` flag.
+4. Admin approves or rejects -- `verify_company.php` updates `is_verified` flag.
 5. Approved companies gain access to product listing features.
 
 ---
@@ -430,14 +430,14 @@ BIDS â”€â”€â”€â”€â”€â”€ validates against â”€
 **Purpose:** Enable verified companies to list, edit, and manage auction items.
 
 **Key Operations:**
-- **Create:** `post_product.php` + `post_product_process.php` â€” Multi-image upload, category selection, base price and expiry date.
-- **Read:** `my_products.php` â€” Company's inventory with bid count and status.
-- **Update:** `edit_product.php` â€” Modify title, description, price, and images.
-- **Delete:** `delete_product.php` â€” Remove listing (cascade deletes associated bids).
+- **Create:** `post_product.php` + `post_product_process.php` -- Multi-image upload, category selection, base price and expiry date.
+- **Read:** `my_products.php` -- Company's inventory with bid count and status.
+- **Update:** `edit_product.php` -- Modify title, description, price, and images.
+- **Delete:** `delete_product.php` -- Remove listing (cascade deletes associated bids).
 
 **Product Status Lifecycle:**
 ```
-[Pending] â†’ [Active/Open] â†’ [Closed] â†’ [Sold]
+[Pending] -> [Active/Open] -> [Closed] -> [Sold]
 ```
 
 ---
@@ -493,7 +493,7 @@ BIDS â”€â”€â”€â”€â”€â”€ validates against â”€
 - Admin broadcast messages
 
 **Implementation:**
-- `notifications.php` â€” Displays paginated list of user notifications.
+- `notifications.php` -- Displays paginated list of user notifications.
 - `includes/` helpers write new notification records on trigger events.
 - Unread count displayed in navigation header badge.
 
@@ -504,10 +504,10 @@ BIDS â”€â”€â”€â”€â”€â”€ validates against â”€
 ## 4.1 Implementation Stack Summary
 
 The system follows a traditional **LAMP-compatible** stack:
-- **L**inux/Windows (XAMPP) â€” Host environment
-- **A**pache 2.4 â€” Web server
-- **M**ySQL 5.7+ / MariaDB 10.4+ â€” Database
-- **P**HP 8.2 â€” Application logic
+- **L**inux/Windows (XAMPP) -- Host environment
+- **A**pache 2.4 -- Web server
+- **M**ySQL 5.7+ / MariaDB 10.4+ -- Database
+- **P**HP 8.2 -- Application logic
 
 Security is enforced at every layer:
 - Input validation via PHP sanitization functions
@@ -521,18 +521,18 @@ Security is enforced at every layer:
 
 | Test Case ID | Module | Input Condition | Expected Result | Status |
 |:---|:---|:---|:---|:---|
-| TC-01 | Authentication | Valid admin credentials | Redirect to Admin Dashboard | âœ… Pass |
-| TC-02 | Authentication | Invalid email or password | Error message displayed, no session | âœ… Pass |
-| TC-03 | Authorization | Client accessing admin URL | Redirect to client dashboard | âœ… Pass |
-| TC-04 | Registration | Incomplete form submission | Validation errors shown | âœ… Pass |
-| TC-05 | Company Verify | Admin approves company | Company status set to verified | âœ… Pass |
-| TC-06 | Product Listing | Company posts new product | Product saved with images | âœ… Pass |
-| TC-07 | Bidding | Bid less than current max | Bid rejected with error message | âœ… Pass |
-| TC-08 | Bidding | Bid greater than current max | Bid accepted and stored | âœ… Pass |
-| TC-09 | Bid Lifecycle | Admin closes auction | Product status changes to closed | âœ… Pass |
-| TC-10 | File Upload | Large image (>5MB) | Upload rejected with file size error | âœ… Pass |
-| TC-11 | Notifications | Bid placed on product | Seller receives new bid notification | âœ… Pass |
-| TC-12 | SQL Injection | Malicious input in form | PDO prepared statement blocks attack | âœ… Pass |
+| TC-01 | Authentication | Valid admin credentials | Redirect to Admin Dashboard | PASS |
+| TC-02 | Authentication | Invalid email or password | Error message displayed, no session | PASS |
+| TC-03 | Authorization | Client accessing admin URL | Redirect to client dashboard | PASS |
+| TC-04 | Registration | Incomplete form submission | Validation errors shown | PASS |
+| TC-05 | Company Verify | Admin approves company | Company status set to verified | PASS |
+| TC-06 | Product Listing | Company posts new product | Product saved with images | PASS |
+| TC-07 | Bidding | Bid less than current max | Bid rejected with error message | PASS |
+| TC-08 | Bidding | Bid greater than current max | Bid accepted and stored | PASS |
+| TC-09 | Bid Lifecycle | Admin closes auction | Product status changes to closed | PASS |
+| TC-10 | File Upload | Large image (>5MB) | Upload rejected with file size error | PASS |
+| TC-11 | Notifications | Bid placed on product | Seller receives new bid notification | PASS |
+| TC-12 | SQL Injection | Malicious input in form | PDO prepared statement blocks attack | PASS |
 
 ---
 
@@ -555,12 +555,12 @@ Security is enforced at every layer:
 The **Bid For Used Product** platform successfully delivers a scalable, secure, and efficient digital auction solution for the used vehicles and machinery market. The system eliminates traditional intermediaries by connecting verified sellers directly with buyers through a transparent, automated bidding process.
 
 **Key Achievements:**
-- âœ… Robust role-based access control with three clearly defined user roles
-- âœ… Automated bid validation ensuring fair competition
-- âœ… GST-based company verification protecting platform integrity
-- âœ… Comprehensive admin panel for full platform governance
-- âœ… Secure backend using PDO prepared statements and Bcrypt hashing
-- âœ… Responsive, user-friendly interface accessible on all modern browsers
+- [CHECK] Robust role-based access control with three clearly defined user roles
+- [CHECK] Automated bid validation ensuring fair competition
+- [CHECK] GST-based company verification protecting platform integrity
+- [CHECK] Comprehensive admin panel for full platform governance
+- [CHECK] Secure backend using PDO prepared statements and Bcrypt hashing
+- [CHECK] Responsive, user-friendly interface accessible on all modern browsers
 
 The platform demonstrates how modern web technologies (PHP, MySQL, Apache) can solve real-world regional business challenges effectively and at minimal infrastructure cost.
 
@@ -581,23 +581,23 @@ The platform demonstrates how modern web technologies (PHP, MySQL, Apache) can s
 
 # BIBLIOGRAPHY
 
-1. PHP Manual â€” Official PHP Documentation. https://www.php.net/manual/en/
+1. PHP Manual -- Official PHP Documentation. https://www.php.net/manual/en/
 2. MySQL 8.0 Reference Manual. https://dev.mysql.com/doc/refman/8.0/en/
-3. OWASP Top 10 â€” Web Application Security Risks. https://owasp.org/www-project-top-ten/
+3. OWASP Top 10 -- Web Application Security Risks. https://owasp.org/www-project-top-ten/
 4. W3C HTML5 Specification. https://html.spec.whatwg.org/
 5. Apache HTTP Server Documentation. https://httpd.apache.org/docs/
-6. PDO Prepared Statements â€” PHP Security Guide. https://phpsecurity.readthedocs.io/
+6. PDO Prepared Statements -- PHP Security Guide. https://phpsecurity.readthedocs.io/
 7. MIT Open Source License Guidelines. https://opensource.org/licenses/MIT
 
 ---
 
 # APPENDICES
 
-## Appendix A â€” Screen Formats (Page Screenshots)
+## Appendix A -- Screen Formats (Page Screenshots)
 
-> Screenshots captured at **1366Ã—768** viewport resolution.
-> - **Viewport Screenshots** â†’ `docs/screenshots/viewport/`
-> - **Full Page Screenshots** â†’ `docs/screenshots/full/`
+> Screenshots captured at **1366x768** viewport resolution.
+> - **Viewport Screenshots** -> `docs/screenshots/viewport/`
+> - **Full Page Screenshots** -> `docs/screenshots/full/`
 
 ---
 
@@ -605,73 +605,55 @@ The platform demonstrates how modern web technologies (PHP, MySQL, Apache) can s
 
 ---
 
-#### 01. Homepage â€” `index.php`
-
-![01 Homepage](docs/screenshots/viewport/01_home_viewport.png)
+#### 01. Homepage -- `index.php`
 
 **Description:** The homepage is the primary public-facing entry point of the platform. It displays the site branding with the "Bid For Used Product" title, a hero section with a call-to-action for browsing active auctions, and a preview grid of current open listings showing product images, category badges, base prices, and remaining auction time. The navigation bar provides links to Login, Register, Products, and Contact. This page is accessible to all visitors without authentication.
 
 ---
 
-#### 02. Products Catalog â€” `products.php`
-
-![02 Products Catalog](docs/screenshots/viewport/02_products_viewport.png)
+#### 02. Products Catalog -- `products.php`
 
 **Description:** The products catalog page displays all active and available auction listings across the platform in a filterable grid layout. Each product card shows the item image, product name, category (e.g., Tractor, JCB, Car), current highest bid amount, base price, and time remaining until auction closes. Visitors can filter listings by category using the sidebar or search bar. No login is required to browse this page, making it key for attracting buyers to the platform.
 
 ---
 
-#### 03. Login Page â€” `pages/login.php`
+#### 03. Login Page -- `pages/login.php`
 
-![03 Login Page](docs/screenshots/viewport/03_login_viewport.png)
-
-**Description:** The login page provides a clean, centered authentication form accepting an email address and password. On successful credential verification (bcrypt hash comparison), users are redirected to their role-appropriate dashboard â€” Admin Panel, Company Dashboard, or Client Dashboard. The form includes visual feedback for invalid credentials and a link to the Forgot Password workflow. Session management and regeneration are handled upon successful login to prevent session fixation attacks.
+**Description:** The login page provides a clean, centered authentication form accepting an email address and password. On successful credential verification (bcrypt hash comparison), users are redirected to their role-appropriate dashboard -- Admin Panel, Company Dashboard, or Client Dashboard. The form includes visual feedback for invalid credentials and a link to the Forgot Password workflow. Session management and regeneration are handled upon successful login to prevent session fixation attacks.
 
 ---
 
-#### 04. Register Client â€” `pages/register_client.php`
-
-![04 Register Client](docs/screenshots/viewport/04_register_client_viewport.png)
+#### 04. Register Client -- `pages/register_client.php`
 
 **Description:** The client registration form allows new buyers to create an account on the platform. Fields include full name, email address, phone number, address, and password with a confirmation field. Upon submission, the system validates all inputs, checks for duplicate email addresses, hashes the password with bcrypt, and creates a new user record with the `client` role. Client accounts are immediately active and can begin browsing and bidding upon registration completion.
 
 ---
 
-#### 05. Register Company â€” `pages/register_company.php`
-
-![05 Register Company](docs/screenshots/viewport/05_register_company_viewport.png)
+#### 05. Register Company -- `pages/register_company.php`
 
 **Description:** The company registration form enables business entities to apply as verified sellers on the platform. In addition to standard user fields (name, email, contact, address), it collects business-specific data including company name, owner name, and GST registration number. Upon submission, an account is created with `company` role and `pending` verification status. The company cannot list products until an administrator reviews and approves the GST details through the verification queue.
 
 ---
 
-#### 06. Contact Page â€” `pages/contact.php`
-
-![06 Contact Page](docs/screenshots/viewport/06_contact_viewport.png)
+#### 06. Contact Page -- `pages/contact.php`
 
 **Description:** The contact page provides a support and inquiry form for any visitor or registered user to communicate with the platform administrators. The form collects the sender's name, email address, subject, and a detailed message body. Submitted messages are stored in the `contact_messages` database table and can be reviewed by the admin through the Messages section of the admin panel. This serves as the primary customer support channel for the platform.
 
 ---
 
-#### 07. Terms and Conditions â€” `pages/terms.php`
-
-![07 Terms and Conditions](docs/screenshots/viewport/07_terms_viewport.png)
+#### 07. Terms and Conditions -- `pages/terms.php`
 
 **Description:** The Terms and Conditions page outlines the legal agreements governing platform usage. It covers user eligibility requirements, registration obligations, prohibited activities, seller and buyer responsibilities in auction transactions, intellectual property rights, the platform's liability limitations, and the procedures for account termination. All users are required to agree to these terms during the registration process. The page is fully accessible without authentication.
 
 ---
 
-#### 08. Privacy Policy â€” `pages/privacy.php`
-
-![08 Privacy Policy](docs/screenshots/viewport/08_privacy_viewport.png)
+#### 08. Privacy Policy -- `pages/privacy.php`
 
 **Description:** The Privacy Policy page documents how the platform collects, stores, uses, and protects user data in compliance with applicable data protection standards. It specifies which personal information is collected during registration (name, email, contact, address, GST details), how data is used for service delivery and notifications, the data retention policy, and user rights regarding their personal information. This page serves as the privacy disclosure document for all platform participants.
 
 ---
 
-#### 09. Forgot Password â€” `pages/forgot_password.php`
-
-![09 Forgot Password](docs/screenshots/viewport/09_forgot_password_viewport.png)
+#### 09. Forgot Password -- `pages/forgot_password.php`
 
 **Description:** The Forgot Password page provides an account recovery mechanism for users who have lost access to their accounts. The form accepts the registered email address and initiates the password reset workflow. This page is accessible without authentication and is linked from the Login page. The form provides clear instructions and feedback messaging to guide users through the recovery process.
 
@@ -683,81 +665,61 @@ The platform demonstrates how modern web technologies (PHP, MySQL, Apache) can s
 
 ---
 
-#### 10. Admin Dashboard â€” `admin/dashboard.php`
-
-![10 Admin Dashboard](docs/screenshots/viewport/10_admin_dashboard_viewport.png)
+#### 10. Admin Dashboard -- `admin/dashboard.php`
 
 **Description:** The Admin Dashboard is the central command interface for the platform administrator. It displays a summary of key system metrics including total registered users, total company registrations, total products listed, and total bids placed. The dashboard also contains a quick-action panel with shortcuts to User Management, Company Verification, Reports, and System Settings. Recent activity feeds show the latest user registrations, product listings, and bid transactions for real-time platform monitoring.
 
 ---
 
-#### 11. Manage Users â€” `admin/manage_users.php`
-
-![11 Manage Users](docs/screenshots/viewport/11_admin_manage_users_viewport.png)
+#### 11. Manage Users -- `admin/manage_users.php`
 
 **Description:** The Manage Users page provides the administrator with a full directory of all registered platform users. The table displays each user's name, email address, assigned role (admin, company, client), account status (active, inactive, banned), and registration date. The administrator can toggle user status between active and banned using inline action buttons, enabling platform access control. Search and filter capabilities allow quick lookup of specific users by name, email, or role.
 
 ---
 
-#### 12. Verify Companies â€” `admin/verify_companies.php`
-
-![12 Verify Companies](docs/screenshots/viewport/12_admin_verify_companies_viewport.png)
+#### 12. Verify Companies -- `admin/verify_companies.php`
 
 **Description:** The Verify Companies page displays the queue of all registered company (seller) accounts for administrator review. Each entry shows the company name, owner's contact details (email and phone), GST registration number, and current verification status (Pending or Verified). The administrator can approve pending company applications using the "Approve" action button, which updates the company's `verified_status` to `verified` and grants them access to list products on the platform. This GST-based verification step is critical to the platform's seller authentication model.
 
 ---
 
-#### 13. View All Products â€” `admin/view_all_products.php`
-
-![13 View All Products](docs/screenshots/viewport/13_admin_view_products_viewport.png)
+#### 13. View All Products -- `admin/view_all_products.php`
 
 **Description:** The View All Products page gives the administrator a comprehensive, platform-wide view of every product listing regardless of which company posted it. The table shows product name, category, listing company, base price, current auction status (open, closed, sold), auction deadline, and total number of bids received. This page enables administrative oversight of all inventory, allowing the admin to monitor auction health, identify anomalies, and take corrective action on problematic listings through a centralized interface.
 
 ---
 
-#### 14. View All Bids â€” `admin/view_all_bids.php`
-
-![14 View All Bids](docs/screenshots/viewport/14_admin_view_bids_viewport.png)
+#### 14. View All Bids -- `admin/view_all_bids.php`
 
 **Description:** The View All Bids page presents a complete ledger of every bid ever submitted on the platform. Each record shows the product name, the bidding client's name and email, the bid amount, bid status (pending, approved, rejected), and the exact timestamp of submission. This provides a full audit trail of all financial offers on the platform, allowing the administrator to track bidding activity, investigate disputes, and monitor the integrity of the competitive bidding engine across all active and completed auctions.
 
 ---
 
-#### 15. Reports â€” `admin/reports.php`
-
-![15 Reports](docs/screenshots/viewport/15_admin_reports_viewport.png)
+#### 15. Reports -- `admin/reports.php`
 
 **Description:** The Reports page provides the administrator with a structured analytics dashboard summarizing platform performance metrics. Charts and summary tables present data on total platform revenue (aggregate bid amounts), number of auctions completed, new user registrations over time, company application trends, and bid volume statistics. These analytics support data-driven decision-making for platform governance, marketing improvement, and operational scaling. The reports give a high-level view of platform health and growth trajectory.
 
 ---
 
-#### 16. Messages â€” `admin/messages.php`
-
-![16 Messages](docs/screenshots/viewport/16_admin_messages_viewport.png)
+#### 16. Messages -- `admin/messages.php`
 
 **Description:** The Messages page is the administrator's inbox for all contact form submissions received from the Contact Us page. Each message entry displays the sender's name, email address, subject line, message content preview, and the submission timestamp. The admin can click "View" to read the complete message body. This serves as the primary customer support inbox, allowing the admin team to respond to user inquiries, technical issues, and business feedback received through the platform's public contact channel.
 
 ---
 
-#### 17. Settings â€” `admin/settings.php`
-
-![17 Settings](docs/screenshots/viewport/17_admin_settings_viewport.png)
+#### 17. Settings -- `admin/settings.php`
 
 **Description:** The Settings page allows the administrator to configure platform-level operational parameters. Key configurable settings include the Site Name, Maintenance Mode toggle (enables or disables the maintenance screen for all non-admin users), and other system configuration values stored in the `site_settings` table. Changes made here immediately affect platform behavior. The maintenance mode feature is particularly useful for applying database updates or code deployments without disrupting active users.
 
 ---
 
-#### 18. System Manager â€” `admin/system_manager.php`
-
-![18 System Manager](docs/screenshots/viewport/18_admin_system_manager_viewport.png)
+#### 18. System Manager -- `admin/system_manager.php`
 
 **Description:** The System Manager is an advanced administrative control panel providing deep system-level controls and diagnostics. It displays server environment information (PHP version, MySQL version, server OS), application performance metrics, error log access, cache and session management utilities, and database health indicators. This page is intended for technical administrators to perform maintenance operations, debug system-level issues, and ensure the application infrastructure remains healthy and secure.
 
 ---
 
-#### 19. Add User â€” `admin/add_user.php`
-
-![19 Add User](docs/screenshots/viewport/19_admin_add_user_viewport.png)
+#### 19. Add User -- `admin/add_user.php`
 
 **Description:** The Add User page allows an administrator to create new user accounts directly without requiring the standard public registration workflow. The form accepts name, email, password, role (admin, company, or client), and account status. This tool is used for onboarding specific users (such as additional admin accounts or pre-approved company accounts) without exposing them to the public registration process. Passwords are hashed using bcrypt before storage, maintaining the same security standards as self-registered accounts.
 
@@ -769,41 +731,31 @@ The platform demonstrates how modern web technologies (PHP, MySQL, Apache) can s
 
 ---
 
-#### 20. Company Dashboard â€” `company/dashboard.php`
-
-![20 Company Dashboard](docs/screenshots/viewport/20_company_dashboard_viewport.png)
+#### 20. Company Dashboard -- `company/dashboard.php`
 
 **Description:** The Company Dashboard is the seller's home screen after login, providing an overview of their auction activity. Key metrics displayed include the total number of products currently listed, the number of active bids received across all listings, total closed auctions, and recent bid notifications. Quick-action buttons navigate to Post a New Product, My Products inventory, and View Bids. This dashboard serves as the operational center for sellers to monitor their auction portfolio and respond to buyer activity in real time.
 
 ---
 
-#### 21. Post Product â€” `company/post_product.php`
-
-![21 Post Product](docs/screenshots/viewport/21_company_post_product_viewport.png)
+#### 21. Post Product -- `company/post_product.php`
 
 **Description:** The Post Product page is the primary product listing creation interface for verified company sellers. The form collects comprehensive product information including product name, category (Vehicles, Tractors, JCB, Harvesters, etc.), model, manufacturing year, chassis number, owner details, running duration, base auction price, auction start and end dates, main product image upload, and a detailed description. The form includes real-time validation to ensure all required fields are properly filled before submission, with uploaded images stored in the `uploads/` directory.
 
 ---
 
-#### 22. My Products â€” `company/my_products.php`
-
-![22 My Products](docs/screenshots/viewport/22_company_my_products_viewport.png)
+#### 22. My Products -- `company/my_products.php`
 
 **Description:** The My Products page shows the company's complete inventory of listed auction items. Each product row displays the product name, category, base price, current highest bid amount, auction status (open/closed/sold), auction expiry date, total bids received, and action buttons for editing, viewing bids, or deleting the listing. This page gives sellers a consolidated view of their entire auction portfolio with real-time bid and status data, enabling them to manage multiple listings simultaneously and identify auctions needing attention.
 
 ---
 
-#### 23. View Bids â€” `company/view_bids.php`
-
-![23 View Bids](docs/screenshots/viewport/23_company_view_bids_viewport.png)
+#### 23. View Bids -- `company/view_bids.php`
 
 **Description:** The View Bids page provides a detailed breakdown of all bids received for a specific product listing. The table shows each bidder's name, email, bid amount, bid placement time, and current bid status (pending, approved, or rejected). The product details (name, base price, auction deadline) are shown at the top for reference. The seller can approve the winning bid using the "Approve" button, which closes the auction and marks the product as sold, or reject individual bids if necessary.
 
 ---
 
-#### 24. Edit Product â€” `company/edit_product.php`
-
-![24 Edit Product](docs/screenshots/viewport/24_company_edit_product_viewport.png)
+#### 24. Edit Product -- `company/edit_product.php`
 
 **Description:** The Edit Product page allows a seller to modify the details of an existing product listing. All fields from the original Post Product form are pre-populated with current values and are editable: product name, category, model, year, chassis number, base price, auction dates, description, and product image. This enables sellers to correct errors, update pricing before bids begin, extend auction deadlines, or refresh product information. Changes are validated before saving and take effect immediately on the public product catalog.
 
@@ -815,25 +767,19 @@ The platform demonstrates how modern web technologies (PHP, MySQL, Apache) can s
 
 ---
 
-#### 25. Client Dashboard â€” `client/dashboard.php`
-
-![25 Client Dashboard](docs/screenshots/viewport/25_client_dashboard_viewport.png)
+#### 25. Client Dashboard -- `client/dashboard.php`
 
 **Description:** The Client Dashboard is the buyer's personalized home screen after login. It summarizes the client's bidding activity including: total bids placed, number of currently winning bids, auctions where the client has been outbid, and completed auctions. Quick-access cards link to Browse Products, My Bids history, and Watchlist. Notification alerts for recent bid status changes (outbid alerts, auction close alerts) are prominently displayed. This dashboard gives buyers a clear snapshot of their auction participation status.
 
 ---
 
-#### 26. Browse Products â€” `client/browse_products.php`
-
-![26 Browse Products](docs/screenshots/viewport/26_client_browse_products_viewport.png)
+#### 26. Browse Products -- `client/browse_products.php`
 
 **Description:** The Browse Products page is the buyer-specific product discovery interface with enhanced filtering and interactivity compared to the public catalog. Buyers can filter listings by category, price range, and auction status. Each product card shows the current highest bid, time remaining, and a quick "Place Bid" action button. Authenticated clients can also toggle the Watchlist reminder feature directly from this page. The interface dynamically updates product statuses and bid amounts to give buyers an accurate real-time view of available auctions.
 
 ---
 
-#### 27. My Bids â€” `client/my_bids.php`
-
-![27 My Bids](docs/screenshots/viewport/27_client_my_bids_viewport.png)
+#### 27. My Bids -- `client/my_bids.php`
 
 **Description:** The My Bids page displays the complete bidding history for the logged-in client. Each entry shows the product name with a thumbnail, the bid amount the client submitted, the current highest bid on that product, bid status (Pending, Winning, Outbid, or Auction Closed), and the auction deadline. Color-coded status badges make it easy for buyers to quickly identify which auctions they are currently winning versus those where they have been outbid, providing actionable insight to place updated competitive bids.
 
@@ -845,23 +791,19 @@ The platform demonstrates how modern web technologies (PHP, MySQL, Apache) can s
 
 ---
 
-#### 28. User Profile â€” `profile.php`
-
-![28 User Profile](docs/screenshots/viewport/28_profile_viewport.png)
+#### 28. User Profile -- `profile.php`
 
 **Description:** The User Profile page provides all authenticated users (admin, company, and client) with an account management interface. Users can update their personal information including full name, email address, phone number, and physical address. A dedicated password change section requires entering the current password before accepting a new one, providing an additional security layer. Profile data changes are validated and saved to the `users` table. The page is role-neutral and serves as the common account settings panel across all user types.
 
 ---
 
-#### 29. Notifications â€” `notifications.php`
-
-![29 Notifications](docs/screenshots/viewport/29_notifications_viewport.png)
+#### 29. Notifications -- `notifications.php`
 
 **Description:** The Notifications page is the centralized alert center for all platform events relevant to the logged-in user. For clients, notifications include alerts for being outbid, winning an auction, or receiving admin announcements. For companies, notifications report new bids received on listings. Each notification entry shows the event type, message content, target link (to the related product or action), and timestamp. Unread notifications are visually highlighted, and a "Mark All Read" function clears the notification badge from the main navigation header.
 
 ---
 
-## Appendix B â€” Screenshot Index
+## Appendix B -- Screenshot Index
 
 | # | Page Name | Section | Viewport File | Full File |
 |:---|:---|:---|:---|:---|
@@ -897,6 +839,5 @@ The platform demonstrates how modern web technologies (PHP, MySQL, Apache) can s
 
 ---
 
-**Copyright © 2026 iBOY Innovation HUB | Jaiganesh D.**  
+**Copyright (c) 2026 iBOY Innovation HUB | Jaiganesh D.**  
 *All rights reserved. This report is intended for academic and documentation purposes.*
-
