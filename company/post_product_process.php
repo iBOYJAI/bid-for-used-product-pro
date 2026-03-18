@@ -50,7 +50,7 @@ if ($end_timestamp <= $start_timestamp) {
     exit;
 }
 
-if (!in_array($category, ['2-wheeler', '4-wheeler', 'machinery'])) {
+if (!in_array($category, ['2-wheeler', '4-wheeler', 'large-vehicle', 'electronics', 'machinery'])) {
     $errors[] = 'Invalid category';
 }
 

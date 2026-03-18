@@ -163,6 +163,18 @@ INSERT INTO products (company_id, product_name, category, model, year, chassis_n
 (1, 'Eicher 485 Tractor', 'machinery', '485 Super DI', 2019, 'EI485678904', 'Farmer', '2,200 hrs', 480000.00, NOW(), DATE_ADD(NOW(), INTERVAL 12 DAY), 'eicher.jpg', 'open', 'Air cooled engine, low efficiency'),
 (2, 'Escorts Farmtrac 60', 'machinery', '60 EPI Classic', 2020, 'ES60789015', 'Agriculture', '1,500 hrs', 590000.00, NOW(), DATE_ADD(NOW(), INTERVAL 16 DAY), 'farmtrac.jpg', 'open', 'Classic power, reliable performer');
 
+-- Additional products for new categories: large-vehicle & electronics
+INSERT INTO products (company_id, product_name, category, model, year, chassis_no, owner_details, running_duration, base_price, bid_start, bid_end, product_image, status, description) VALUES
+-- Large Vehicles (buses, trucks, etc.)
+(3, 'Ashok Leyland Viking Bus', 'large-vehicle', 'Viking 222\" WB', 2018, 'ALBUS123456', 'Private Transport Operator', '2,10,000 km', 1850000.00, NOW(), DATE_ADD(NOW(), INTERVAL 20 DAY), 'leyland_viking.jpg', 'open', 'Inter-city passenger bus, well maintained'),
+(4, 'Tata LPT 1613 Truck', 'large-vehicle', 'LPT 1613 TC', 2019, 'TATRK234567', 'Logistics Fleet', '1,80,000 km', 1650000.00, NOW(), DATE_ADD(NOW(), INTERVAL 18 DAY), 'tata_1613.jpg', 'open', 'Goods carrier truck, single owner'),
+(5, 'BharatBenz 2523 Tipper', 'large-vehicle', '2523C', 2020, 'BBTPR345678', 'Construction Material Supplier', '1,20,000 km', 2450000.00, NOW(), DATE_ADD(NOW(), INTERVAL 22 DAY), 'bharatbenz_2523.jpg', 'open', 'Heavy duty tipper, good tyres'),
+
+-- Electronics (high value used electronics for auction)
+(6, 'Apple MacBook Pro 16-inch', 'electronics', 'M1 Pro 16GB/512GB', 2022, 'MBP16M1PRO001', 'IT Consultant', '18 months use', 135000.00, NOW(), DATE_ADD(NOW(), INTERVAL 7 DAY), 'mbp16.jpg', 'open', 'Gently used, original box and bill'),
+(7, 'Samsung 65\" QLED TV', 'electronics', 'Q80A Series', 2021, 'SMQLED652021', 'Home User', 'Logged 1,500 hrs', 65000.00, NOW(), DATE_ADD(NOW(), INTERVAL 5 DAY), 'samsung_qled.jpg', 'open', '4K QLED smart TV, wall mount included'),
+(8, 'Dell PowerEdge R740 Server', 'electronics', 'R740 2xSilver 4114', 2019, 'DLR740SRV019', 'Small Data Center', '24/7 usage', 185000.00, NOW(), DATE_ADD(NOW(), INTERVAL 10 DAY), 'dell_r740.jpg', 'open', 'Rack server, pulled from production with health reports');
+
 -- ============================================================
 -- 3. BIDS (Realistic Data)
 -- ============================================================

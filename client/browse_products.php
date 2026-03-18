@@ -56,6 +56,8 @@ $products = fetch_all($sql, $params);
                     <option value="">All Categories</option>
                     <option value="2-wheeler" <?php echo $category === '2-wheeler' ? 'selected' : ''; ?>>2-Wheeler</option>
                     <option value="4-wheeler" <?php echo $category === '4-wheeler' ? 'selected' : ''; ?>>4-Wheeler</option>
+                    <option value="large-vehicle" <?php echo $category === 'large-vehicle' ? 'selected' : ''; ?>>Large Vehicle</option>
+                    <option value="electronics" <?php echo $category === 'electronics' ? 'selected' : ''; ?>>Electronics</option>
                     <option value="machinery" <?php echo $category === 'machinery' ? 'selected' : ''; ?>>Machinery</option>
                 </select>
             </div>

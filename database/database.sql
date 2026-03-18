@@ -45,7 +45,7 @@ CREATE TABLE products (
     product_id INT AUTO_INCREMENT PRIMARY KEY,
     company_id INT NOT NULL,
     product_name VARCHAR(200) NOT NULL,
-    category VARCHAR(50),
+    category ENUM('2-wheeler','4-wheeler','large-vehicle','electronics','machinery') NOT NULL,
     model VARCHAR(100),
     year INT,
     chassis_no VARCHAR(100),

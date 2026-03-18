@@ -50,6 +50,8 @@ require_login('company');
                                 <option value="">Select Category</option>
                                 <option value="2-wheeler">2-Wheeler</option>
                                 <option value="4-wheeler">4-Wheeler</option>
+                                <option value="large-vehicle">Large Vehicle</option>
+                                <option value="electronics">Electronics</option>
                                 <option value="machinery">Machinery</option>
                             </select>
                         </div>

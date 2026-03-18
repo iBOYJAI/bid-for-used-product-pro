@@ -127,6 +127,8 @@ $bid_end_val = date('Y-m-d\TH:i', strtotime($product['bid_end']));
                             <select name="category" id="categorySelect" class="form-control" style="background-color: #f8fafc;" required>
                                 <option value="2-wheeler" <?php echo $product['category'] === '2-wheeler' ? 'selected' : ''; ?>>2-Wheeler</option>
                                 <option value="4-wheeler" <?php echo $product['category'] === '4-wheeler' ? 'selected' : ''; ?>>4-Wheeler</option>
+                                <option value="large-vehicle" <?php echo $product['category'] === 'large-vehicle' ? 'selected' : ''; ?>>Large Vehicle</option>
+                                <option value="electronics" <?php echo $product['category'] === 'electronics' ? 'selected' : ''; ?>>Electronics</option>
                                 <option value="machinery" <?php echo $product['category'] === 'machinery' ? 'selected' : ''; ?>>Machinery</option>
                             </select>
                         </div>
